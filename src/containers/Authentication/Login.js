@@ -5,6 +5,7 @@ import * as actions from "../../store/actions";
 import './Login.scss';
 import { FormattedMessage } from 'react-intl';
 import { hendleLoginApi } from '../../services/userService';
+import { userLoginSuccess } from '../../store/actions';
 
 
 
@@ -40,6 +41,7 @@ class Login extends Component {
                 })
             }
             if(data && data.errCode ===0){
+                this.props.userLoginSuccess(data.user)
                 console.log('thanh cong')
             }
         }catch(e){
@@ -70,7 +72,7 @@ class Login extends Component {
                     </div>
                     <div className='col-12 form-group login-input'>
                         <lable>Mật Khẩu</lable>
-                        <input type='MatKhau' 
+                        <input type='password' 
                         className='form-control' 
                         placeholder='nhập mật khẩu'
                         value={this.state.MatKhau}
@@ -114,8 +116,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         navigate: (path) => dispatch(push(path)),
-        adminLoginSuccess: (adminInfo) => dispatch(actions.adminLoginSuccess(adminInfo)),
-        adminLoginFail: () => dispatch(actions.adminLoginFail()),
+        // adminLoginSuccess: (adminInfo) => dispatch(actions.adminLoginSuccess(adminInfo)),
+        userLoginFail: () => dispatch(actions.userLoginFail()),
+        userLoginSuccess: (userInfo) => dispatch(actions.userLoginSuccess(userInfo)),
     };
 };
 
