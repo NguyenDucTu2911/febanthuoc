@@ -1,0 +1,59 @@
+.login-background {
+  background: linear-gradient(135deg, #22c1c3 0%, #fdbb2d 100%);
+  height: 100rem;
+  width: auto;
+}
+.login-background .login-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: white;
+  border-radius: 21px;
+  width: 22rem;
+  height: 30rem;
+  margin: auto;
+  padding: 1.25rem;
+}
+.login-background .login-container .text-login {
+  font-weight: 600;
+  font-size: 25px;
+  margin-bottom: 2rem;
+}
+.login-background .login-container .login-input {
+  margin: 0.4rem 0;
+}
+.login-background .login-container .btn-login {
+  margin: 16px 0;
+  width: 100%;
+  height: 3rem;
+  border-radius: 2rem;
+  color: white;
+  font-size: 1.5rem;
+  background: linear-gradient(90deg, rgb(34, 193, 195) 0%, rgb(253, 187, 45) 100%);
+  border: 0px;
+  cursor: pointer;
+  transition: opacity 0.25s ease-out;
+}
+.login-background .login-container .forgotpass {
+  cursor: pointer;
+  font-size: 12px;
+}
+.login-background .login-container .Or-login {
+  margin-top: 2rem;
+}
+.login-background .login-container .social-login {
+  font-size: 3rem;
+  text-align: center;
+}
+.login-background .login-container .social-login .social-google {
+  color: #d6382d;
+  margin: 0 0.5rem;
+  cursor: pointer;
+}
+.login-background .login-container .social-login .social-facebook {
+  color: #0c88ef;
+  margin: 0 0.5rem;
+  cursor: pointer;
+}/*# sourceMappingURL=login.css.map */
