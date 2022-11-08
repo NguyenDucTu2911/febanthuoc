@@ -29,11 +29,28 @@ class Login extends Component {
     }
 
     handlelogin = async()=>{
-        console.log('teen: ',this.state.TaiKhoan, 'mk: ',this.state.MatKhau)
+        this.setState({
+            errMessage: ''
+        })
         try{
-            await hendleLoginApi(this.state.TaiKhoan,this.state.MatKhau)
+            let data = await hendleLoginApi(this.state.TaiKhoan,this.state.MatKhau)
+            if(data && data.errCode !==0){
+                this.setState({
+                    errMessage: data.message
+                })
+            }
+            if(data && data.errCode ===0){
+                console.log('thanh cong')
+            }
         }catch(e){
-            console.log(e)
+            console.log(e.response)
+            if(e.response){
+                if(e.response.data){
+                    this.setState({
+                        errMessage: e.response.data.Message
+                    })
+                }
+            }
         }
     }
     render() {
@@ -60,6 +77,11 @@ class Login extends Component {
                             onChange={(event)=> this.handleChangeMatKhau(event)}
                         />
                     </div>
+
+                    <div className='col-12 ' style={{color:'red'}}>
+                       {this.state.errMessage}
+                    </div>
+
                     <div className='col-12 form-group'>
                         <button className='btn-login' onClick={()=> {this.handlelogin()}}>Đăng nhập</button>
                     </div>
