@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import '../SystemScss/UserManage.scss';
-import {hendlegetUser} from '../../services/userService'
+import {hendlegetUser} from '../../services/userService';
+import ModalUser from './ModalUser';
+
+
 class UserManage extends Component {
 
     //init
@@ -10,6 +13,7 @@ class UserManage extends Component {
         super(props);
         this.state={
             arrUser: [],
+            isOpenModalUser: false,
         }
     }
     //gán giá trị
@@ -22,14 +26,36 @@ class UserManage extends Component {
         }
     }
 
+    hendleAddUser = ()=>{
+       this.setState({
+            isOpenModalUser: true,
+       })
+    }
+
+    toggleUserModal =()=>{
+        this.setState({
+            isOpenModalUser: !this.state.isOpenModalUser,
+       })
+    }
 
     render() {
-        console.log(this.state.arrUser)
         let arrUser = this.state.arrUser
         return (
             <div className="Manageusers">
+               <ModalUser
+                    isOpen={this.state.isOpenModalUser}
+                    toggleUserModal = {this.toggleUserModal}
+               />
+               
                 <div className='Manageusers-content'>
                     <h1 className='Manageusers-title'>MANAGE USERS</h1>
+                </div>
+                <div className='create'>
+                    <button className='btn btn-primary px-3'
+                    onClick={()=>this.hendleAddUser()}
+                    >
+                    <i class="fas fa-plus icon"></i>
+                    Thêm tài khoản</button>
                 </div>
                 <table>
                     <tr  className='taitle'>
