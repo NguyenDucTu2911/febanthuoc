@@ -5,4 +5,8 @@ const hendleLoginApi =(TaiKhoan, MatKhau) =>{
     return axios.post('/api/login', {TaiKhoan,MatKhau});
 }
 
-export {hendleLoginApi}
+const hendlegetUser =(id) =>{
+    return axios.get(`/api/getUser?id=${id}`);
+}
+
+export {hendleLoginApi,hendlegetUser}

@@ -1,0 +1,59 @@
+.Manageusers{
+    font-family: arial, sans-serif;
+    padding: 0.5rem;
+
+    .Manageusers-content{
+
+
+
+        .Manageusers-title{
+            text-align: center;
+            color: #0071ba;
+            font-size: 2.5rem;
+            margin: 2.5rem;
+        }
+
+    }
+
+    table {
+        
+        border-collapse: collapse;
+        width: 100%;
+
+            .taitle{
+                background-color: #008b8b;
+            }
+
+            td, th {
+                border: 1px solid #e9ecef;
+                text-align: center;
+                padding: 8px;
+
+                .btn-edit {
+                    border: none;
+                    background-color: transparent;
+                    outline: none;
+                    width: 2rem;
+                    height: auto;
+                    color: black;
+                }
+                .btn-delete{
+                    border: none;
+                    background-color: transparent;
+                    outline: none;
+                    width: 2rem;
+                    height: auto;
+                    color: black;
+                }
+            }
+
+            tr:nth-child(even) {
+                background-color: #dddddd;
+            }
+
+            .item:hover {
+                background-color: #a5abb1;
+            }
+      }
+          
+}
