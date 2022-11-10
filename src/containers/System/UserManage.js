@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import '../SystemScss/UserManage.scss';
-import {hendlegetUser} from '../../services/userService';
+import {hendlegetUser, createNewUser, DeleteUser} from '../../services/userService';
 import ModalUser from './ModalUser';
 
 
@@ -18,6 +18,10 @@ class UserManage extends Component {
     }
     //gán giá trị
     async componentDidMount() {
+        await this.getAllFormUser();
+    }
+
+    getAllFormUser = async ()=>{
         let response = await hendlegetUser('ALL');
         if(response && response.errCode === 0){
             this.setState({
@@ -25,6 +29,7 @@ class UserManage extends Component {
             })
         }
     }
+
 
     hendleAddUser = ()=>{
        this.setState({
@@ -38,6 +43,38 @@ class UserManage extends Component {
        })
     }
 
+    createUser = async(data)=>{
+        try{
+            let response = await createNewUser(data)
+            if(response && response.message.errCode !==0){
+                alert(response.message.errMessage)
+            }else{
+                await this.getAllFormUser();
+                this.setState({
+                    isOpenModalUser: false,
+               })
+            }
+
+        }catch(e){
+            console.log(e)
+        }
+    }
+
+    hendalDleteUser = async (users)=>{
+        console.log(users)
+        try{
+            let res = await DeleteUser(users.id)
+            if(res && res.message.errCode === 0 ){
+                await this.getAllFormUser();
+            }else{
+                alert(res.message.errMessage)
+            }
+
+        }catch(e){
+            console.log(e)
+        }
+    }
+
     render() {
         let arrUser = this.state.arrUser
         return (
@@ -45,6 +82,7 @@ class UserManage extends Component {
                <ModalUser
                     isOpen={this.state.isOpenModalUser}
                     toggleUserModal = {this.toggleUserModal}
+                    createUser = {this.createUser}
                />
                
                 <div className='Manageusers-content'>
@@ -54,41 +92,52 @@ class UserManage extends Component {
                     <button className='btn btn-primary px-3'
                     onClick={()=>this.hendleAddUser()}
                     >
-                    <i class="fas fa-plus icon"></i>
+                    <i className="fas fa-plus icon"></i>
                     Thêm tài khoản</button>
                 </div>
                 <table>
-                    <tr  className='taitle'>
-                        <th>Sô Tài Khoản</th>
-                        <th>Tài Khoản</th>
-                        <th>Quyền</th>
-                        <th>Ngày Tạo</th>
-                        <th>Ngày Cập Nhật</th>
-                        <th>action</th>
-                    </tr>
-                    {
-                        arrUser && arrUser.map((item, index)=>{
-                            return(
-                                <>
-                                <tr className='item'>
-                                    <td>{item.id}</td>
-                                    <td>{item.TaiKhoan}</td>
-                                    <td>{item.Quyen}</td>
-                                    <td>{item.createdAt}</td>
-                                    <td>{item.updatedAt}</td>
-                                    <td>
-                                        <button className='btn-edit'>
-                                            <i className="fas fa-user-edit"></i>
-                                        </button>
-                                        <button className='btn-delete'>
-                                            <i className="far fa-trash-alt"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                </>
-                            )
-                        })
-                    }      
+                    <tbody>
+                        <tr  className='taitle'>
+                            <th>Sô Tài Khoản</th>
+                            <th>Tài Khoản</th>
+                            <th>Họ Tên</th>
+                            <th>Giới Tính</th>
+                            <th>Ngày Sinh</th>
+                            <th>Email</th>
+                            <th>Số Điện Thoại</th>
+                            <th>Địa Chỉ</th>
+                            <th>Quyền</th>
+                            <th>action</th>
+                        </tr>
+                        {arrUser && arrUser.map((item, index)=>{
+                                return(
+                                    <>
+                                    <tr className='item'>
+                                        <td>{item.id}</td>
+                                        <td>{item.TaiKhoan}</td>
+                                        <td>{item.HoTen}</td>
+                                        <td>{item.GioiTinh}</td>
+                                        <td>{item.NgaySinh}</td>
+                                        <td>{item.Email}</td>
+                                        <td>{item.SoDT}</td>
+                                        <td>{item.DiaChi}</td>
+                                        <td>{item.Quyen}</td>
+                                        <td>
+                                            <button className='btn-edit'>
+                                                <i className="fas fa-user-edit edit-item"></i>
+                                            </button>
+
+                                            <button className='btn-delete'
+                                            onClick={()=>this.hendalDleteUser(item)}>
+                                                <i className="far fa-trash-alt delete-item"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    </>
+                                )
+                            })
+                        }  
+                    </tbody>    
                 </table>
             </div>
         );

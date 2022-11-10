@@ -9,4 +9,17 @@ const hendlegetUser =(id) =>{
     return axios.get(`/api/getUser?id=${id}`);
 }
 
-export {hendleLoginApi,hendlegetUser}
+const createNewUser = (data)=>{
+    return axios.post('/api/postUser',data)
+}
+
+const DeleteUser = (id)=>{
+    // return axios.delete('/api/deleteUser',{id})
+    return axios.delete('/api/deleteUser',{
+        data: {
+            id: id
+        }
+    });
+}
+
+export {hendleLoginApi,hendlegetUser,createNewUser,DeleteUser}

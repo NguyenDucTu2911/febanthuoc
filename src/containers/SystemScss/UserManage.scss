@@ -44,6 +44,7 @@
                     width: 2rem;
                     height: auto;
                     color: black;
+                    margin-right: 4px;
                 }
                 .btn-delete{
                     border: none;
@@ -52,6 +53,19 @@
                     width: 2rem;
                     height: auto;
                     color: black;
+                    margin-left: 4px;
+                }
+                .edit-item{
+                    font-size: 1.4rem;
+                    &:hover{
+                        color: rgb(136, 136, 46);
+                    }
+                }
+                .delete-item{
+                    font-size: 1.4rem;
+                    &:hover{
+                        color: red;
+                    }
                 }
             }
 
@@ -78,10 +92,21 @@
                 outline: none;
                 padding: 0 10px;
             }
-            
-        } 
+        }
+        .item {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+
+            .inputContainer {
+                /* display: flex; */
+                /* flex-direction: column; */
+                width: 49%;
+            }
+        }
         
     }
+    
     .btn-modal{
         padding: 7px 7px;
         text-align: center;

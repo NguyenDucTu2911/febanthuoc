@@ -62,7 +62,7 @@ class Login extends Component {
                 <div className='login-content row'>
                     <div className='col-12 text-center text-login'>Login</div>
                     <div className='col-12 form-group login-input'>
-                        <lable>Tên Đăng Nhập</lable>
+                        <label>Tên Đăng Nhập</label>
                         <input type='text' 
                             className='form-control' 
                             placeholder='nhập tên đăng nhập' 
@@ -71,7 +71,7 @@ class Login extends Component {
                             />
                     </div>
                     <div className='col-12 form-group login-input'>
-                        <lable>Mật Khẩu</lable>
+                        <label>Mật Khẩu</label>
                         <input type='password' 
                         className='form-control' 
                         placeholder='nhập mật khẩu'
@@ -94,8 +94,8 @@ class Login extends Component {
                         <span>Hoạc:</span>
                     </div>
                     <div className='col-12 social-login' >
-                        <i class="fab fa-google-plus social-google"></i>
-                        <i class="fab fa-facebook social-facebook"></i>
+                        <i className="fab fa-google-plus social-google"></i>
+                        <i className="fab fa-facebook social-facebook"></i>
                     </div>
                 </div>
             </div>
