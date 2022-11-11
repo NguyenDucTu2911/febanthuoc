@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import '../SystemScss/UserManage.scss';
-import {hendlegetUser, createNewUser, DeleteUser} from '../../services/userService';
+import {hendlegetUser, createNewUser, DeleteUser, editUsersv} from '../../services/userService';
 import ModalUser from './ModalUser';
+import ModalEditUser from './ModalEditUser';
+import{emitter} from '../../utils/emitter'
 
 
 class UserManage extends Component {
@@ -14,6 +16,8 @@ class UserManage extends Component {
         this.state={
             arrUser: [],
             isOpenModalUser: false,
+            isOpenModalEditUser: false,
+            UserEdit: [],
         }
     }
     //gán giá trị
@@ -30,6 +34,7 @@ class UserManage extends Component {
         }
     }
 
+    //hendle
 
     hendleAddUser = ()=>{
        this.setState({
@@ -37,30 +42,14 @@ class UserManage extends Component {
        })
     }
 
-    toggleUserModal =()=>{
+    hendleEditUser = (user)=>{
         this.setState({
-            isOpenModalUser: !this.state.isOpenModalUser,
-       })
-    }
+            isOpenModalEditUser: true,
+            UserEdit: user
+        })
+     }
 
-    createUser = async(data)=>{
-        try{
-            let response = await createNewUser(data)
-            if(response && response.message.errCode !==0){
-                alert(response.message.errMessage)
-            }else{
-                await this.getAllFormUser();
-                this.setState({
-                    isOpenModalUser: false,
-               })
-            }
-
-        }catch(e){
-            console.log(e)
-        }
-    }
-
-    hendalDleteUser = async (users)=>{
+     hendalDleteUser = async (users)=>{
         console.log(users)
         try{
             let res = await DeleteUser(users.id)
@@ -75,6 +64,53 @@ class UserManage extends Component {
         }
     }
 
+    //togede
+    toggleUserModal =()=>{
+        this.setState({
+            isOpenModalUser: !this.state.isOpenModalUser,
+       })
+    }
+    toggleEditUserModal=()=>{
+        this.setState({
+            isOpenModalEditUser: !this.state.isOpenModalEditUser,
+
+       })
+    }
+
+    createUser = async(data)=>{
+        try{
+            let response = await createNewUser(data)
+            if(response && response.message.errCode !==0){
+                alert(response.message.errMessage)
+            }else{
+                await this.getAllFormUser();
+                this.setState({
+                    isOpenModalUser: false,
+               })
+            }
+            emitter.emit('EVEN_CLEAR_MODAL_DATA')
+        }catch(e){
+            console.log(e)
+        }
+    }
+
+    editUser = async(data)=>{
+        try{
+            let response = await editUsersv(data)
+            console.log(response)
+            if(response && response.message.errCode !==0){
+                alert(response.message.errMessage)
+            }else{
+                await this.getAllFormUser();
+                this.setState({
+                    isOpenModalEditUser: false,
+               })
+            }
+        }catch(e){
+            console.log(e)
+        }
+    }
+    
     render() {
         let arrUser = this.state.arrUser
         return (
@@ -84,6 +120,15 @@ class UserManage extends Component {
                     toggleUserModal = {this.toggleUserModal}
                     createUser = {this.createUser}
                />
+                {
+                    this.state.isOpenModalEditUser &&
+                    <ModalEditUser
+                    isOpen={this.state.isOpenModalEditUser}
+                    toggleUserModal = {this.toggleEditUserModal}
+                    curentUser = {this.state.UserEdit}
+                    editUser ={this.editUser}
+               />
+                }
                
                 <div className='Manageusers-content'>
                     <h1 className='Manageusers-title'>MANAGE USERS</h1>
@@ -93,7 +138,7 @@ class UserManage extends Component {
                     onClick={()=>this.hendleAddUser()}
                     >
                     <i className="fas fa-plus icon"></i>
-                    Thêm tài khoản</button>
+                    Thêm Người Dùng</button>
                 </div>
                 <table>
                     <tbody>
@@ -123,7 +168,8 @@ class UserManage extends Component {
                                         <td>{item.DiaChi}</td>
                                         <td>{item.Quyen}</td>
                                         <td>
-                                            <button className='btn-edit'>
+                                            <button className='btn-edit'
+                                            onClick={()=>this.hendleEditUser(item)}>
                                                 <i className="fas fa-user-edit edit-item"></i>
                                             </button>
 

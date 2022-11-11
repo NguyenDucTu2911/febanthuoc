@@ -1,0 +1,77 @@
+.HomeHeader-container{
+    height: 4rem;
+    width: 100%;
+    .HomeHeader-content{
+        width: 100%;
+        height: 100%;
+        .HomeHeader-content_item {
+            width: 100%;
+            height: 100%;
+            background-color: #084298;
+            .top_content{
+                display: flex;
+                justify-content: space-between;
+                width: 80%;
+                height: 100%;
+                position: relative;
+                left: 0;
+                right: 0;
+                top: auto;
+                margin: auto;
+                background-color: #084298;
+                .left_content{
+                    width: 10%;
+                    height: 100%;
+                    .header-logo{
+                        background: url(../../../assets/images/logo-NhaThuoc.svg) center center no-repeat ;
+                        width: 70px;
+                        height: 60px;
+                    }
+                }
+                .center_content{
+                    height: 100%;
+                    width: 70%;
+                    display: flex;
+                    justify-content: space-around;
+                    line-height: 5rem;
+                    .child_content{
+                        font-size: 16px;
+                        color: #fff;
+                        cursor: pointer;
+                    }
+                }
+
+                .right_content{
+                    width: 15%;
+                    height: 100%;
+                    display: flex;
+                    text-align: center;
+
+                    .cart {
+                        width: 80%;
+                        height: 100%;
+                        color: #ffff;
+                        font-size: 1.5rem;
+                        line-height: 4.6rem;
+                        cursor: pointer;
+
+                        .cart-text {
+                            padding-left: 3px;
+                            text-size-adjust: 1px;
+                            font-size: 12px;
+                        }
+                    }
+                    .flag{
+                        width: 20%;
+                        line-height: 5rem;
+                        font-size: 16px;
+                        color: #fff;
+                        height: 100%;
+                    }
+                    
+                }
+            }
+        }
+        
+    }
+}

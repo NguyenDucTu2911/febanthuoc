@@ -1,7 +1,7 @@
 .Manageusers{
     font-family: arial, sans-serif;
     padding: 0.5rem;
-
+    
     .Manageusers-content{
 
 
@@ -81,6 +81,9 @@
 }
 
 .modalUserContainer{
+    h5{
+        text-align: center;
+    }
     .modalUserBody{
         .inputContainer{
             display: flex;

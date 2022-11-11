@@ -13,8 +13,11 @@ const createNewUser = (data)=>{
     return axios.post('/api/postUser',data)
 }
 
+const editUsersv = (data)=>{
+    return axios.put('/api/putUser',data)
+}
+
 const DeleteUser = (id)=>{
-    // return axios.delete('/api/deleteUser',{id})
     return axios.delete('/api/deleteUser',{
         data: {
             id: id
@@ -22,4 +25,4 @@ const DeleteUser = (id)=>{
     });
 }
 
-export {hendleLoginApi,hendlegetUser,createNewUser,DeleteUser}
+export {hendleLoginApi,hendlegetUser,createNewUser,DeleteUser,editUsersv}

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { Button ,Modal, ModalBody, ModalHeader, ModalFooter } from 'reactstrap';
-import{emitter} from '../../utils/emitter'
+import _ from 'lodash';
 
 
 class ModalUser extends Component {
@@ -10,8 +10,8 @@ class ModalUser extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            id: '',
             TaiKhoan: '',
-            MatKhau: '',
             HoTen: '',
             Email: '',
             GioiTinh: '',
@@ -21,26 +21,24 @@ class ModalUser extends Component {
             idCV: '',
             Quyen: '',
         }
-        this.listenToEmitter();
     }
 
-    listenToEmitter(){
-        emitter.on('EVEN_CLEAR_MODAL_DATA', ()=>{
-            this.setState({
-                TaiKhoan: '',
-            MatKhau: '',
-            HoTen: '',
-            Email: '',
-            GioiTinh: '',
-            NgaySinh: '',
-            SoDT: '',
-            DiaChi: '',
-            idCV: '',
-            Quyen: '',
-            })
-        })
-    }
     componentDidMount() {
+        let {curentUser}=this.props;
+        if(curentUser && !_.isEmpty(curentUser)){
+            this.setState({
+                id: curentUser.id,
+                TaiKhoan: curentUser.TaiKhoan,
+                HoTen: curentUser.HoTen,
+                Email: curentUser.Email,
+                GioiTinh: curentUser.GioiTinh,
+                NgaySinh: curentUser.NgaySinh,
+                SoDT: curentUser.SoDT,
+                DiaChi:curentUser.DiaChi,
+                idCV: curentUser.idCV,
+                Quyen: curentUser.Quyen,
+            })
+        }
     }
 
     toggle =()=>{
@@ -55,16 +53,16 @@ class ModalUser extends Component {
         })
     }
 
-    hendalAddUser =()=>{
+    hendalSave =()=>{
         let check = this.checkValidateInput();
         if(check === true){
-            this.props.createUser(this.state)
+            this.props.editUser(this.state)
         }
     }
 
     checkValidateInput=()=>{
         let isvalid = true;
-        let arr = ['TaiKhoan', 'MatKhau', 'HoTen','Email' ,'GioiTinh','NgaySinh' ,
+        let arr = ['TaiKhoan','HoTen','Email',
         'SoDT','DiaChi','idCV','Quyen'];
         for(let i = 0; i < arr.length ; i++){
             console.log(this.state[arr[i]],arr[i])
@@ -86,7 +84,7 @@ class ModalUser extends Component {
             size='lg'
             centered
             >
-                <ModalHeader toggle={()=>{this.toggle()}}>Thêm Người Dùng
+                <ModalHeader toggle={()=>{this.toggle()}}>Thay Đổi Thông Tin Người Dùng
                     <button className='btn-closeModal' 
                     onClick={()=>{this.toggle()}}>
                     <i className="fas fa-times-circle close-modal"></i>
@@ -102,26 +100,17 @@ class ModalUser extends Component {
                                 value={this.state.TaiKhoan}  
                                 ></input>
                             </div>
-
-                            <div className='inputContainer'>
-                                <label>Mật Khẩu</label>
-                                <input type='password' 
-                                onChange={(even)=> {this.hendalOnChaneInput(even, 'MatKhau')}}
-                                value={this.state.MatKhau}     
-                                ></input>
-                            </div>
-                        </div>
-                        
-                       
-                        <div className='item'>
                             <div className='inputContainer'>
                                 <label>Họ Tên</label>
                                 <input type='text' 
                                 onChange={(even)=> {this.hendalOnChaneInput(even, 'HoTen')}}
                                 value={this.state.HoTen}
                                 ></input>
-                            </div>
-
+                            </div>  
+                        </div>
+                        
+                       
+                        <div className='item'>
                             <div className='inputContainer'>
                                 <label>Email</label>
                                 <input type='email' 
@@ -129,9 +118,6 @@ class ModalUser extends Component {
                                 value={this.state.Email} 
                                 ></input>
                             </div>
-                        </div>
-
-                        <div className='item'>
                             <div className='inputContainer'>
                                 <label for="inputState">Giới Tính</label>
                                 <select name="GioiTinh" id="inputState" className="form-control" 
@@ -141,19 +127,11 @@ class ModalUser extends Component {
                                 <option value="DEFAULT" selected>Chọn...</option>
                                 <option value="0" >Nam</option>
                                 <option value="1" >Nữ</option>
-                                </select>
-                            </div>
 
-                            <div className='inputContainer'>
-                                <label>Ngày Sinh</label>
-                                <input type='date' 
-                                onChange={(even)=> {this.hendalOnChaneInput(even, 'NgaySinh')}}
-                                value={this.state.NgaySinh} 
-                                ></input>
+                                </select>
                             </div>
                         </div>
 
-                        
                         <div className='item'>
                             <div className='inputContainer'>
                                 <label>Số Điện Thoại</label>
@@ -203,7 +181,7 @@ class ModalUser extends Component {
                 </ModalBody>
                 <ModalFooter>
                     <Button className='btn-modal' color='primary' 
-                        onClick={()=>{this.hendalAddUser()}}>Thêm</Button>{''}
+                        onClick={()=>{this.hendalSave()}}>Lưu</Button>{''}
                     <Button className='btn-modal' color='secondary' onClick={()=>{this.toggle()}}>Hủy</Button>
                 </ModalFooter>
             </Modal>
