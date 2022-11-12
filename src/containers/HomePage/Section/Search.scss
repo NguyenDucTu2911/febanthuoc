@@ -1,14 +1,18 @@
 .section-search{
+    position: relative;
+    background-color: #fff;
     width: 80%;
-    height: 10rem;
+    height: 12rem;
     left: 0;
     right: 0;
     bottom: 0;
     top: 0rem;
-    margin: auto;
+    margin: -4rem auto auto;
     padding: 1rem 4rem;
     border-radius: 1rem;
-    border: 1px solid red;
+    z-index: 1000;
+    box-shadow: 2px 2px 2px #a6afb9;
+    
     .search_content{
 
         .search-title{
@@ -32,7 +36,7 @@
                     .input-search{
                         width: 100%;
                         height: 100%;
-                        margin-left: 1rem;
+                        margin-left: 2rem;
                         border: none;
                         outline: none;
                     }
@@ -43,8 +47,8 @@
                     text-align: center;
                     line-height: 2rem;
                     .btn-search{
-                        width: 100%;
-                        height: 100%;
+                        width: 101%;
+                        height: 101%;
                         border-radius: 0 2rem 2rem 0;
                         background-color: #084298;
                         border: none;
@@ -56,6 +60,34 @@
 
                 }
             }
+            .search-buttom{
+                width: 100%;
+                height: 100%;
+                padding-top: 1rem;
+                .search-buttom-text{
+                    height: 2rem;
+                    width: 100%;
+                    margin: auto;
+                }
+                .buttom-item{
+                    height: 1.5rem;
+                    width: 100%;
+                    .btn-search_item{
+                        min-width: 6rem;
+                        height: 100%;
+                        border-radius: 1rem;
+                        border: none;
+                        margin: 0 1rem;
+                        text-align: center;
+                        line-height: 0.7rem;
+                        &:hover{
+                            background-color: #f0f0f080;
+                        }
+                    }
+                }
+
+            }
+
         }
     }
 

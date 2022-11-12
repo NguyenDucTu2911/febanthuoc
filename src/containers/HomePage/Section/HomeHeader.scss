@@ -18,6 +18,7 @@
                 right: 0;
                 top: auto;
                 margin: auto;
+                text-shadow: 1px 1px 1px #333;
                 background-color: #084298;
                 .left_content{
                     width: 10%;
@@ -61,12 +62,33 @@
                             font-size: 12px;
                         }
                     }
-                    .flag{
+                    .flag-vn{
                         width: 20%;
                         line-height: 5rem;
                         font-size: 16px;
                         color: #fff;
                         height: 100%;
+                        cursor: pointer;
+                        &.active{
+                            span{
+                                color: orange;
+                            }
+                        }
+                    }
+                    .flag-en {
+                        cursor: pointer;
+                        width: 20%;
+                        line-height: 5rem;
+                        font-size: 16px;
+                        color: #fff;
+                        height: 100%;
+                        padding-left: 6px;
+                        &.active{
+                            span{
+                                color: orange;
+                            }
+                            
+                        }
                     }
                     
                 }

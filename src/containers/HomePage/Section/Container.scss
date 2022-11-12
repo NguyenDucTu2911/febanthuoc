@@ -1,0 +1,52 @@
+.Container {
+    position: absolute;
+    width: 80%;
+    height: 15rem;
+    left: 0;
+    right: 0;
+    margin: 1rem auto;
+    .Container-item{
+        width: 100%;
+        .Container-text{
+            width: 100%;
+            text-align: center;
+            .Container_title{
+                font-weight: bolder;
+                font-size: 16px;
+            }
+
+        }
+       .Container-body{
+            width: 100%;
+            display: flex;
+            padding: 0 133px;
+            .Container-body_item{
+                width: 18rem;
+                text-align: center;
+                margin-top: 1rem;
+                .img-info{
+                    width: 100%;
+                    height: 7rem;
+                    text-align: center;
+                    font-size: 3.5rem;
+                    color: #084298;
+                }
+                .Container-body_info{
+                    .body_info-title{
+                        font-size: 14px;
+                        font-weight: bolder;
+                        color: #084298;
+                    }
+                    .body_info-text{
+                        font-size: 12px;
+                        color: #52637a;
+                    }
+                }
+                
+            }
+
+       }
+
+
+    }
+}

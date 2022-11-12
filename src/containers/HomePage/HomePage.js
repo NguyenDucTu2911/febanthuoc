@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import HomeHeader from './HomeHeader';
 import Banner from './Banner';
 import Search from './Search'
-
+import Container from './Container';
+// import Thuoc from './Thuoc'
 class HomePage extends Component {
 
     render() {
@@ -14,6 +15,8 @@ class HomePage extends Component {
                 <HomeHeader/>
                 <Banner/>
                 <Search/>
+                <Container/>
+                
             </div>
         
         );

@@ -1,4 +1,20 @@
 {
+    "homeheader":{
+        "Medicine": "Medicine",
+        "Functional_foods":"Functional foods",
+        "Pharmaceutical_product":"Pharmaceutical product",
+        "cart":"Cart",
+        "Drug_Lookup":"Drug Lookup,TPCN...",
+        "Top_Lookup":"Top Lookup",
+        "Buy_drugs_easily_at_the_pharmacy":"Buy drugs easily at the pharmacy",
+        "PRESCRIPTION_CAPTURE":"PRESCRIPTION CAPTURE",
+        "simple_fast":"simple & fast",
+        "ENTER_CONTACT_INFORMATION":"ENTER CONTACT INFORMATION",
+        "for_ordering_advice":"for ordering advice",
+        "GET_A_QUOTE":"GET A QUOTE FROM A PHARMACIST",
+        "with_free_consultation":"with free consultation"
+
+    },
     "common": {
         "add": "Add",
         "edit": "Edit",

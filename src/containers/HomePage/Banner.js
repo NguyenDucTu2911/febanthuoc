@@ -11,9 +11,10 @@ class Banner extends Component {
       <React.Fragment>
         <div
           id="carouselExampleControls"
-          className="carousel slide"
+          className="carousel slide "
           data-bs-ride="carousel"
         >
+        <div className="z-dex">
           <div className="carousel-inner">
             <div className="carousel-item active">
               <img src={Banner1} className="d-block w-100" alt="..." />
@@ -51,6 +52,7 @@ class Banner extends Component {
             ></span>
             <span className="visually-hidden">Next</span>
           </button>
+          </div>
         </div>
       </React.Fragment>
     );

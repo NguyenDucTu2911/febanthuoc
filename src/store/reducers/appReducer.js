@@ -31,6 +31,13 @@ const appReducer = (state = initialState, action) => {
                     ...action.contentOfConfirmModal
                 }
             }
+
+        case actionTypes.CHANGE_LANGUAGR: 
+            return {
+                ...state,
+                language: action.language,
+                // started: true
+            }
         default:
             return state;
     }

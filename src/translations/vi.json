@@ -1,4 +1,19 @@
 {
+    "homeheader":{
+        "Medicine": "Thuốc",
+        "Functional_foods":"Thực Phẩm Chức Năng",
+        "Pharmaceutical_product": "Dược Phẩm",
+        "cart":"Giỏ Hàng",
+        "Drug_Lookup": "Tra Cứu Thuốc, TPCN....",
+        "Top_Lookup": "Tra Cứu Hàng Đầu",
+        "Buy_drugs_easily_at_the_pharmacy":"Mua Thuốc Dễ Dàng Tại Nhà Thuốc",
+        "PRESCRIPTION_CAPTURE":"CHỤP TOA THUỐC",
+        "simple_fast":"đơn giản & nhanh chóng",
+        "ENTER_CONTACT_INFORMATION":"NHẬP THÔNG TIN LIÊN LẠC",
+        "for_ordering_advice":"để được tư vấn đặt hàng",
+        "GET_A_QUOTE":"Nhận Báo Gía Từ Dược Sĩ",
+        "with_free_consultation":"kèm theo tư vấn miễn phí"
+    },
     "common": {
         "add": "Thêm",
         "edit": "Sửa",
