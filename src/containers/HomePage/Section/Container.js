@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import './Section/Container.scss';
+import './Container.scss';
 import { FormattedMessage } from 'react-intl';
 
 class Container extends Component {

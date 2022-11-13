@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import './Section/Search.scss';
+import './Search.scss';
 import { FormattedMessage } from 'react-intl';
 
 class Search extends Component {
@@ -25,12 +25,24 @@ class Search extends Component {
                 <div className="search-buttom">
                       <p className="search-buttom-text"><FormattedMessage id='homeheader.Top_Lookup'/></p>
                       <div className="buttom-item">
+                      <div className="btn-search_item">
                         <button className='btn-search_item'>panadol</button>
-                        <button className='btn-search_item'>vitamin</button>
+                      </div>
+                        <div className="btn-search_item">
+                      <button className='btn-search_item'>vitamin</button>
+                        </div>
+                      <div className="btn-search_item">
                         <button className='btn-search_item'>khẩu trang</button>
-                        <button className='btn-search_item'>nước muối</button>
+                      </div>
+                        <div className="btn-search_item">
+                      <button className='btn-search_item'>nước muối</button>
+                        </div>
+                      <div className="btn-search_item">
                         <button className='btn-search_item'>xịt mũi</button>
+                      </div>
+                      <div className="btn-search_item">
                         <button className='btn-search_item'>bổ phổi</button>
+                      </div> 
                       </div>
                 </div>
             </div>

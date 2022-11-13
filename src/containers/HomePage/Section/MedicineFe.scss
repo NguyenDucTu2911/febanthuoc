@@ -1,0 +1,131 @@
+.home-page__new{
+    position: relative;
+    z-index: 0;
+    margin: auto;
+    width: 80%;
+    .home-page__nav{
+        background-color: #e8f5fd;
+        margin-top: -120px;
+        .home-page__nav-herder{
+            margin-top: 26rem;
+            position: sticky;
+            z-index: 999;
+            width: 100%;
+            background: #e8f5fd;
+            .home-page__nav-content{
+                margin: 0;
+                background-color: #e8f5fd;
+                display: flex;
+                padding: 0;
+                flex: 0 0 1;
+                /* font-size: 18px; */
+                align-items: center;
+                .home-page__nav-list{
+                    list-style: none;
+                    padding: 18px 35px;
+                    font-size: 18px;
+                    position: relative;
+                    color: #000000;
+                    font-weight: bolder;
+                    font-size: 16px;
+                    .home-page__nav-list--img {
+                        color: #17181999;
+                    }
+                }
+            }
+        }
+        .home-page__new-content{
+            padding-bottom: 20px;
+            padding: 8px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            .home-page__new-item{
+                margin-top: 12px;
+                width: 192px;
+                height: auto;
+                position: relative;
+                cursor: pointer;
+                border: 1px solid #dbdbdb;
+                border-radius: 0 0 4px 4px;
+                background-color:  #fff;
+                .home-page__new-content--link,
+                .home-page__new-content--item{
+                    text-decoration: none;
+                    .home-page__new-flashsale{
+                        height: 214px;
+                        .home-page__new-jmg{
+                            position: absolute;
+                            width: 190px;
+                            .home-page__new-jmg--anh{
+                                height: auto;
+                                width: 190px;
+
+                            }
+
+                        }
+                        .home-page__new__discount{
+                            position: relative;
+                            width: 42px;
+                            height: 40px;
+                            text-align: center;
+                            background: #f4dc1e;
+                            font-size: 11px;
+                            padding: 2px;
+                            float: right;
+                            z-index: 1;
+                            .home-page__new__discount--herder{
+                                color: red;
+
+                            }
+                            .home-page__new__discount--content{
+                                color:  #fff;
+                            }
+
+                        }
+                    }
+                    
+                    .home-page__new--discount__content{
+                        font-size: 12px;
+                        padding: 0 5px;
+                        overflow: hidden;
+                        display: -webkit-box;
+                        height: 54px;
+                        -webkit-box-orient: vertical;
+                        -webkit-line-clamp: 2;
+                        color: #333;
+                    }
+                    .home-page__new--discount{
+                        padding: 0 5px;
+                    }
+                }
+
+            }
+            .home-page__new-hr:hover{
+                display: block;
+                border: 1px solid #084298;
+                z-index: 2;
+                transition: opacity .1s;
+                transform: translateY(-2px);
+
+            }
+
+        }
+        .home-page__new-footer {
+            margin: auto;
+            width: 80%;
+            margin: auto;
+            padding: 35px 0;
+            display: flex;
+            justify-content: center;
+            .home-page__new-footer-btn {
+                border: 1px solid #3333333d;
+                padding: 5px;
+                font-size: 19px;
+                background-color: #e8f5fd;
+                cursor: pointer;
+                border-radius: 4px;
+            }
+        }
+    }
+}

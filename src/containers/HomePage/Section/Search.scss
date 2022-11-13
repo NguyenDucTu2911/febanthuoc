@@ -6,8 +6,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    top: 0rem;
-    margin: -4rem auto auto;
+    margin:auto;
     padding: 1rem 4rem;
     border-radius: 1rem;
     z-index: 1000;
@@ -72,12 +71,13 @@
                 .buttom-item{
                     height: 1.5rem;
                     width: 100%;
+                    display: flex;
+                    justify-content: space-evenly;
                     .btn-search_item{
-                        min-width: 6rem;
+                        min-width: 4rem;
                         height: 100%;
                         border-radius: 1rem;
                         border: none;
-                        margin: 0 1rem;
                         text-align: center;
                         line-height: 0.7rem;
                         &:hover{

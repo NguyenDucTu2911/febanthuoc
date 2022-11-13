@@ -1,6 +1,12 @@
 .HomeHeader-container{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     height: 4rem;
     width: 100%;
+    // overflow: hidden;
+    z-index: 1001;
     .HomeHeader-content{
         width: 100%;
         height: 100%;
@@ -31,7 +37,7 @@
                 }
                 .center_content{
                     height: 100%;
-                    width: 70%;
+                    width: 65%;
                     display: flex;
                     justify-content: space-around;
                     line-height: 5rem;
@@ -43,13 +49,13 @@
                 }
 
                 .right_content{
-                    width: 15%;
+                    width: 20%;
                     height: 100%;
                     display: flex;
                     text-align: center;
 
                     .cart {
-                        width: 80%;
+                        width: 60%;
                         height: 100%;
                         color: #ffff;
                         font-size: 1.5rem;
@@ -61,17 +67,119 @@
                             text-size-adjust: 1px;
                             font-size: 12px;
                         }
+                        .navication-cart__shop__input{
+                            &:hover .navication-cart__shop-icon{
+                                display: block;
+                            }
+                            .navication-cart__shop-icon{
+                                display: none;
+                                position: absolute;
+                                width: 400px;
+                                min-height: 240px;
+                                border: 2px solid #084298;
+                                background-color: #dcdcdc;
+                                top: 46px;
+                                right: 80px;
+                                border-radius: 4px;
+                                animation: headernotifiy ease-in 0.25s;
+                                will-change: opacity , transform;
+                                transform-origin: calc(100% - 20px) top;
+                                &::before{
+                                    content: "";
+                                    position: absolute;
+                                    border-width: 24px 24px;
+                                    border-style: solid;
+                                    border-color: transparent transparent #084298 transparent;
+                                    right: 32px;
+                                    top: -35px;
+                                }
+                                .navication-cart__header{
+                                    color: #fff;
+                                    padding-left: 12px !important;
+                                    font-size: 1.3rem !important;
+                                    font-weight: bold;
+                                    background-color: #084298;
+                                    padding: 10px;
+    
+                                }
+                                .navication-cart-list{
+                                    padding-left: 0;
+                                    margin: 0;
+                                    .navication-cart-item{
+                                        display: flex;
+    
+                                        .navication-cart-link{
+                                            width: 100%;
+                                            padding: 5px;
+                                            display: flex;
+                                            text-decoration: none;
+                                            &:hover{
+                                                width: 101%;
+                                                border: 1px solid #084298;
+                                            }
+    
+                                        }
+                                        .header__notifiy-img{
+                                            width: 60px;
+                                            object-fit: contain;
+                                        }
+                                        .navication-cart-info{
+                                            display: flex;
+                                            justify-content: space-around;
+                                            flex: 1;
+                                            .navication-cart-descriotion{
+                                                font-family: Helvetica;
+                                                font-size: 1rem;
+                                                font-weight: 500;
+                                                padding: 12px 12px;
+                                                color: #0000;
+                                                flex: 1 1;
+                                            }
+                                            .navication-cart__money{
+                                                font-family: Helvetica;
+                                                font-size: 1rem;
+                                                font-weight: 500;
+                                                color: red;
+                                                padding: 12px 4px;
+    
+                                            }
+    
+                                        }
+                                    }
+    
+                                }
+                                .header__navication-footer{
+                                    background-color: #084298;
+                                    height: 32px;
+                                    line-height: 26px;
+                                    .header__navication-footer-btn{
+                                        font-family: Helvetica;
+                                        font-size: 1rem;
+                                        font-weight: 500;
+                                        color: #fff;
+                                        text-decoration: none;
+                                    }
+    
+                                }
+                            }
+
+                        }
+ 
                     }
                     .flag-vn{
                         width: 20%;
                         line-height: 5rem;
                         font-size: 16px;
-                        color: #fff;
+                        color: #ffffff80;
                         height: 100%;
                         cursor: pointer;
+                        &:hover{
+                            color: #fff;
+                        }
                         &.active{
                             span{
                                 color: orange;
+                                
                             }
                         }
                     }
@@ -80,9 +188,12 @@
                         width: 20%;
                         line-height: 5rem;
                         font-size: 16px;
-                        color: #fff;
+                        color:#ffffff80;
                         height: 100%;
                         padding-left: 6px;
+                        &:hover{
+                            color: #fff;
+                        }
                         &.active{
                             span{
                                 color: orange;

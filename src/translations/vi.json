@@ -12,7 +12,21 @@
         "ENTER_CONTACT_INFORMATION":"NHẬP THÔNG TIN LIÊN LẠC",
         "for_ordering_advice":"để được tư vấn đặt hàng",
         "GET_A_QUOTE":"Nhận Báo Gía Từ Dược Sĩ",
-        "with_free_consultation":"kèm theo tư vấn miễn phí"
+        "with_free_consultation":"kèm theo tư vấn miễn phí",
+        "products_that_increase_resistance":"Sản Phẩm Tăng Sức Đề Kháng",
+        "Physiological_Hormonal":" Sinh lý - Nội tiết tố",
+        "Heart_Health":"Sức Khỏe Tim Mạch",
+        "Supports_digestion":"Hỗ trợ tiêu hóa",
+        "Brain_nerves": "Thần Kinh Não",
+        "Improved_functional_enhancement":"Cải thiện tăng cường chức năng",
+        "Take_care_of_your_body":"Chăm sóc cơ thể",
+        "Directory":"Danh Mục",
+        "Sold":"Đã Bán",
+        "See_also":"Xem Thêm",
+        "add_new":"Sản phẩm mới thêm",
+        "View_cart":"Xem giỏ hàng",
+        "Together":"Cùng nhau bảo vệ sức khỏe của người thần và gia đình"
+
     },
     "common": {
         "add": "Thêm",
