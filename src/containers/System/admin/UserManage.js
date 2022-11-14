@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
-import '../SystemScss/UserManage.scss';
-import {hendlegetUser, createNewUser, DeleteUser, editUsersv} from '../../services/userService';
-import ModalUser from './ModalUser';
-import ModalEditUser from './ModalEditUser';
-import{emitter} from '../../utils/emitter'
+import '../../SystemScss/UserManage.scss';
+import {hendlegetUser, createNewUser, DeleteUser, editUsersv} from '../../../services/userService';
+import ModalUser from '../ModalUser';
+import ModalEditUser from '../ModalEditUser';
+import{emitter} from '../../../utils/emitter'
 
 
 class UserManage extends Component {

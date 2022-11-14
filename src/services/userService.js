@@ -24,5 +24,10 @@ const DeleteUser = (id)=>{
         }
     });
 }
+const getAllCodeServices = (inputdata)=>{
+    return axios.get(`/api/getAllcode?type=${inputdata}`)
+}
 
-export {hendleLoginApi,hendlegetUser,createNewUser,DeleteUser,editUsersv}
+export {hendleLoginApi,hendlegetUser,createNewUser,DeleteUser,editUsersv,
+    getAllCodeServices
+}

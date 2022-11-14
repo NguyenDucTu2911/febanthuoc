@@ -1,0 +1,27 @@
+.Employee{
+    font-family: serif;
+    padding: 10px;
+    border: 1px solid;
+    .Employee-title{
+        .Employee-title_text{
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            margin: 16px;
+        }
+    }
+    .Employee-body{
+        .container{
+            .row{
+                .item{
+                    .inputContainer{
+
+                    }
+                }
+            }
+
+        }
+
+    }
+}
+
