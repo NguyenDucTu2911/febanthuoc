@@ -28,6 +28,15 @@ const getAllCodeServices = (inputdata)=>{
     return axios.get(`/api/getAllcode?type=${inputdata}`)
 }
 
+const createNewMedicine = (data)=>{
+    return axios.post('/api/postMedicine',data)
+}
+
+const hendlegetThuoc =(id) =>{
+    return axios.get(`/api/getMedicine?id=${id}`);
+}
+
+
 export {hendleLoginApi,hendlegetUser,createNewUser,DeleteUser,editUsersv,
-    getAllCodeServices
+    getAllCodeServices,createNewMedicine,hendlegetThuoc
 }

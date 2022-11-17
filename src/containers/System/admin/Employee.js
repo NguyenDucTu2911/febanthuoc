@@ -3,7 +3,6 @@ import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import "./Employee.scss";
 import Managebody from "./managebody";
-
 class Employee extends Component {
   constructor(props){
     super(props);
@@ -35,7 +34,6 @@ class Employee extends Component {
 const mapStateToProps = (state) => {
   return {
     language: state.app.language,
-    GioiTinhRedux: state.admin.GioiTinhs
   };
 };
 

@@ -7,8 +7,11 @@ import Container from './Section/Container';
 import Directory from './Section/Directory';
 import Footter from './Section/Footter';
 import MedicineFe from './Section/MedicineFe';
+import Products from './Section/Products';
 
 class HomePage extends Component {
+
+    
 
     render() {
         return (
@@ -17,8 +20,10 @@ class HomePage extends Component {
                 <Banner/>
                 <Search/>
                 <Container/>
+                
                 <Directory/>
                 <MedicineFe/>
+                <Products/>
                 <Footter/>  
             </div>
         

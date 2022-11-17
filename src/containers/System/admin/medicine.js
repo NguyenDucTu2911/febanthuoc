@@ -1,147 +1,171 @@
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
-import { Form, FormGroup, Label, Input, Button, Col, Row } from "reactstrap";
-import '../../SystemScss/medicine.scss';
+import {hendlegetThuoc, createNewMedicine, DeleteUser, editUsersv} from '../../../services/userService';
+import ModalEditUser from '../ModalEditUser';
+import{emitter} from '../../../utils/emitter'
+import '../admin/medicine.scss'
+import ModaMedicine from '../ModaMedicine';
 
-class medicine extends Component {
+class Medicine extends Component {
 
-    state = {
-
+    //init
+    constructor(props){
+        super(props);
+        this.state={
+            products: [],
+            isOpenmodaMedicine: false,
+        }
+    }
+    //gán giá trị
+    async componentDidMount() {
+      await this.getAllFormThuoc();
+    }
+  
+    getAllFormThuoc = async ()=>{
+      let response = await hendlegetThuoc('ALL');
+      if(response && response.errCode === 0){
+          this.setState({
+            products: response.data,   
+          })
+      }
     }
 
-    componentDidMount() {
+    //hendle
+
+    hendleAddUser = ()=>{
+       this.setState({
+            isOpenmodaMedicine: true,
+       })
     }
+
+    //togede
+    toggleThuocModal =()=>{
+        this.setState({
+          isOpenmodaMedicine: !this.state.isOpenmodaMedicine,
+       })
+    }
+
+    createThuoc = async(data)=>{
+        try{
+            let response = await createNewMedicine(data)
+            if(response && response.message.errCode !==0){
+                alert(response.message.errMessage)
+            }else{
+                await this.getAllFormUser();
+                this.setState({
+                  isOpenmodaMedicine: false,
+               })
+            }
+            emitter.emit('EVEN_CLEAR_MODAL_DATA')
+        }catch(e){
+            console.log(e)
+        }
+    }
+
+    editUser = async(data)=>{
+        try{
+            let response = await editUsersv(data)
+            console.log(response)
+            if(response && response.message.errCode !==0){
+                alert(response.message.errMessage)
+            }else{
+                await this.getAllFormUser();
+                this.setState({
+                    isOpenModalEditUser: false,
+               })
+            }
+        }catch(e){
+            console.log(e)
+        }
+    }
+    
     render() {
+        let products = this.state.products
+        console.log(products)
         return (
-            <div className="medicine">
-                <div className='medicine-title'>
-                    <h1 className='medicine-title_text'>Quản lý Thuốc</h1>
+            <div className="Manageusers">
+               <ModaMedicine
+                    isOpen={this.state.isOpenmodaMedicine}
+                    toggleThuocModal = {this.toggleThuocModal}
+                    createThuoc = {this.createThuoc}
+               />
+                {
+                    this.state.isOpenModalEditUser &&
+                    <ModalEditUser
+                    isOpen={this.state.isOpenModalEditUser}
+                    toggleUserModal = {this.toggleEditUserModal}
+                    curentUser = {this.state.UserEdit}
+                    editUser ={this.editUser}
+               />
+                }
+               
+                <div className='Manageusers-content'>
+                    <h1 className='Manageusers-title'>MANAGE USERS</h1>
                 </div>
-                <div className="medicine-body">
-          <Form>
-            <Row>
-              <Col md={4}>
-                <FormGroup>
-                  <Label for="exampleEmail">Tên Thuốc</Label>
-                  <Input
-                    id="exampleEmail"
-                    name="TenThuoc"
-                    type="text"
-                  />
-                </FormGroup>
-              </Col>
-              <Col md={4}>
-                <FormGroup>
-                  <Label for="DangBaoChe">Dang Bao Che</Label>
-                  <Input
-                    id="DangBaoChe"
-                    name="DangBaoChe"
-                    type="text"
-                  />
-                </FormGroup>
-              </Col>
+                <div className='create'>
+                    <button className='btn btn-primary px-3'
+                    onClick={()=>this.hendleAddUser()}
+                    >
+                    <i className="fas fa-plus icon"></i>
+                    Thêm Thu</button>
+                </div>
+                <table>
+                    <tbody>
+                        <tr  className='taitle'>
+                            <th>Tên Thuốc</th>
+                            <th>Dạng Bào Chế</th>
+                            <th>Tác dụng</th>
+                            <th>Thành Phần Chính</th>
+                            <th>Độ Tuổi</th>
+                            <th>Đơn giá</th>
+                            <th>DVT</th>
+                            <th>Số Lượng</th>
+                            <th>Quy Cách</th>
+                            <th>Chỉ Dịnh</th>
+                            <th>Thuốc Cần Kê Toa</th>
+                            <th>Chống Chỉ Định</th>
+                            <th>Số Đăng Ký</th>
+                            <th>action</th>
+                        </tr>
+                        {products && products.map((item, index)=>{
+                                return(
+                                    <>
+                                    <tr className='item'>
+                                        <td>{item.TenThuoc}</td>
+                                        <td>{item.DangBaoChe}</td>
+                                        <td>{item.TacDung}</td>
+                                        <td>{item.ThanhPhanChinh}</td>
+                                        <td>{item.DoTuoi}</td>
+                                        <td>{item.DonGia}</td>
+                                        <td>{item.DVT}</td>
+                                        <td>{item.SoLuong}</td>
+                                        <td>{item.QuyCach}</td>
+                                        <td>{item.ChiDinh}</td>
+                                        <td>{item.ThuocCanKeToa}</td>
+                                        <td>{item.ChongChiDinh}</td>
+                                        <td>{item.SoDangKy}</td>
+                        
+                                        <td>
+                                            <button className='btn-edit'
+                                            onClick={()=>this.hendleEditUser(item)}>
+                                                <i className="fas fa-user-edit edit-item"></i>
+                                            </button>
 
-              <Col md={4}>
-                <FormGroup>
-                  <Label for="TacDung">Tac Dung</Label>
-                  <Input id="TacDung" name="TacDung" type="text" />
-                </FormGroup>
-              </Col>
-            </Row>
-            <Row>
-              <Col md={4}>
-                <FormGroup>
-                  <Label for="ThanhPhanChinh">Thanh Phan Chinh</Label>
-                  <Input id="ThanhPhanChinh" name="ThanhPhanChinh" type="text"></Input>
-                </FormGroup>
-              </Col>
-              <Col md={2}>
-                <FormGroup>
-                  <Label for="DoTuoi">Do Tuoi</Label>
-                  <Input id="DoTuoi" name="DoTuoi" type="text" />
-                </FormGroup>
-              </Col>
-              <Col md={2}>
-                <FormGroup>
-                  <Label for="DonGia">Don Gia</Label>
-                  <Input id="DonGia" name="DonGia"  />
-                </FormGroup>
-              </Col>
-              <Col md={2}>
-                <FormGroup>
-                  <Label for="DVT">DVT</Label>
-                  <Input
-                    id="DVT"
-                    name="DVT"
-                    type="text"
-                  />
-                </FormGroup>
-              </Col>
-              <Col md={2}>
-                <FormGroup>
-                  <Label for="SoLuong">So Luong</Label>
-                  <Input id="SoLuong" name="SoLuong" type="nuber" />
-                </FormGroup>
-              </Col>
-            </Row>
-            <Row>
-              <Col md={6}>
-              <FormGroup>
-                  <Label for="QuyCach">Quy Cach</Label>
-                  <Input id="QuyCach" name="QuyCach" type="text" />
-                </FormGroup>
-              </Col>
-              <Col md={4}>
-              <FormGroup>
-                  <Label for="ChiDinh">Chi Dinh</Label>
-                  <Input id="ChiDinh" name="ChiDinh" type="text" />
-                </FormGroup>
-              </Col>
-              <Col md={2}>
-                <FormGroup>
-                  <Label for="ThuocCanKeToa">Thuoc Can Ke Toa</Label>
-                  <Input
-                    id="ThuocCanKeToa"
-                    name="ThuocCanKeToa"
-                    type="text"
-                  />
-                </FormGroup>
-              </Col>
-            </Row>
-            <Row>
-              <Col md={6}>
-                <FormGroup>
-                  <Label for="ChongChiDinh">Chong Chi Dinh</Label>
-                  <Input id="ChongChiDinh" name="ChongChiDinh" type="text" />
-                </FormGroup>
-              </Col>
-              <Col md={2}>
-              <FormGroup>
-                  <Label for="SoDangKy">So Dang Ky</Label>
-                  <Input id="SoDangKy" name="SoDangKy" type="text" />
-                </FormGroup>
-              </Col>
-              <Col md={2}>
-              <FormGroup>
-                  <Label for="ChiDinh">Anh</Label>
-                  <Input id="ChiDinh" name="ChiDinh" type="text" />
-                </FormGroup>
-              </Col>
-              <Col md={2}>
-              <FormGroup>
-                  <Label for="MaNhomThuoc">Ma Nhom Thuoc</Label>
-                  <Input id="MaNhomThuoc" name="MaNhomThuoc" type="text" />
-                </FormGroup>
-                </Col>
-            </Row>
-            {" "}
-            <Button style={{ marginTop: 12, padding: 2 }}>Lưu</Button>
-          </Form>
-        </div>
+                                            <button className='btn-delete'
+                                            onClick={()=>this.hendalDleteUser(item)}>
+                                                <i className="far fa-trash-alt delete-item"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    </>
+                                )
+                            })
+                        }  
+                    </tbody>    
+                </table>
             </div>
-            
-        )
+        );
     }
 
 }
@@ -156,4 +180,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(medicine);
+export default connect(mapStateToProps, mapDispatchToProps)(Medicine);

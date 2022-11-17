@@ -1,17 +1,19 @@
-import React, { Component } from "react";
+import React, { Component,useState, useEffect } from "react";
 import { connect } from "react-redux";
 import "./Section/HomeHeader.scss";
 import { FormattedMessage } from "react-intl";
 import { languages } from "../../utils/constant";
 import { ChangelanguageApp } from "../../store/actions/appActions";
-import title from "../../assets/images/title.png";
 
 class HomeHeader extends Component {
+
+  
   Changelanguage = (language) => {
     this.props.ChangelanguageApp(language);
   };
   render() {
     let language = this.props.language;
+    
     return (
       <div className="HomeHeader-container">
         <div className="HomeHeader-content">
@@ -50,52 +52,23 @@ class HomeHeader extends Component {
                         </span>
                         </header>
                         <ul class="navication-cart-list">
-                            <li class="navication-cart-item">
-                                <a href="" class="navication-cart-link">
-                                <img
-                                    src="./assets/css/img/mypham.jpg"
-                                    alt=""
-                                    class="header__notifiy-img"
-                                />
-                                <div class="navication-cart-info">
-                                    <span class="navication-cart-descriotion">
-                                        thuốc châu á
-                                    </span>
-                                    <span class="navication-cart__money">₫500.12</span>
-                                </div>
-                                </a>
-                            </li>
-
-                        <li class="navication-cart-item">
-                            <a href="" class="navication-cart-link">
-                            <img
-                                src="./assets/css/img/nuochoa.png"
-                                alt=""
-                                class="header__notifiy-img"
-                            />
-                            <div class="navication-cart-info">
-                                <span class="navication-cart-descriotion">
-                                thuốc mỹ
-                                </span>
-                                <span class="navication-cart__money">₫500.12</span>
-                            </div>
-                            </a>
-                        </li>
-                        <li class="navication-cart-item">
-                            <a href="" class="navication-cart-link">
-                            <img
-                                src="https://salt.tikicdn.com/cache/400x400/ts/product/20/80/fc/21dfb3d29d52b634698ab2af5cbfd770.jpg.webp"
-                                alt=""
-                                class="header__notifiy-img"
-                            />
-                            <div class="navication-cart-info">
-                                <span class="navication-cart-descriotion">
-                                thuốc âu
-                                </span>
-                                <span class="navication-cart__money">₫500.12</span>
-                            </div>
-                            </a>
-                        </li>
+                            
+                          {/* <button
+                                className="btn shopping-cart-btn"
+                                onClick={() =>
+                                  setCartVisible(true)
+                                }>
+                                <GiShoppingBag size={24} />
+                                {productsInCart.length >
+                                  0 && (
+                                  <span className="product-count">
+                                    {
+                                      productsInCart.length
+                                    }
+                                  </span>
+                                )}
+                              </button>
+                               */}
                         </ul>
                     <footer class="header__navication-footer">
                       <a href="" class="header__navication-footer-btn">
@@ -104,9 +77,7 @@ class HomeHeader extends Component {
                     </footer>
 
                     </div>
-                    
                   </i>
-                  
                 </div>
                 <div
                   className={
@@ -150,3 +121,5 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeHeader);
+
+

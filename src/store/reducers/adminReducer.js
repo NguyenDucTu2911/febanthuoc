@@ -12,23 +12,28 @@ const adminReducer = (state = initialState, action) => {
         case actionTypes.FETCH_GENDER_START:
             return {
                 ...state,
-                // isLoggedIn: true,
-                // userInfo: action.userInfo
             }
         case actionTypes.FETCH_GENDER_SUCCESS:
             let copystate = {...state};
             copystate.GioiTinhs = action.data
-                console.log(copystate)
             return {
                  ...copystate,
-                // isLoggedIn: false,
-                // userInfo: null
             }
         case actionTypes.FETCH_GENDER_FAIL:
             return {
+                ...state, 
+            }
+
+        case actionTypes.FETCH_ROLR_SUCCESS:
+            let copyROLE = {...state};
+            copyROLE.ROLL = action.data
+            return {
+                    ...copyROLE,
+            }
+
+        case actionTypes.FETCH_ROLE_FAIL:
+            return {
                 ...state,
-                // isLoggedIn: false,
-                // userInfo: null
             }
         default:
             return state;

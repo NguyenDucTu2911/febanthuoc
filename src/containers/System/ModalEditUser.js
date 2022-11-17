@@ -125,8 +125,8 @@ class ModalUser extends Component {
                                     value={this.state.GioiTinh} 
                                     >
                                 <option value="DEFAULT" selected>Chọn...</option>
-                                <option value="0" >Nam</option>
-                                <option value="1" >Nữ</option>
+                                <option value="Nam" >Nam</option>
+                                <option value="Nữ" >Nữ</option>
 
                                 </select>
                             </div>
@@ -158,9 +158,9 @@ class ModalUser extends Component {
                                 onChange={(even)=> {this.hendalOnChaneInput(even, 'idCV')}}
                                 value={this.state.idCV} >
                                 <option value="DEFAULT" selected>Chọn...</option>
-                                <option value="1" >Giám Đốc</option>
-                                <option value="2">Quản Lý</option>
-                                <option value="3">Nhân Viên sale</option>
+                                <option value="R1" >Giám Đốc</option>
+                                <option value="R2">Quản Lý</option>
+                                <option value="R3">Nhân Viên sale</option>
                                 </select>
                             </div>
 

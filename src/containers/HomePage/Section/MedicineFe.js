@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import "./Search.scss";
 import { FormattedMessage } from "react-intl";
 import "./MedicineFe.scss";
-import title from "../../../assets/images/title.png";
+import {Link} from 'react-router-dom';
 
 class Search extends Component {
   render() {
@@ -34,7 +34,8 @@ class Search extends Component {
 
           <div className="home-page__new-content">
             <div className="home-page__new-item home-page__new-hr">
-              <a href="" className="home-page__new-content--link">
+            <Link to="/detail">
+              {/* <a href='' className="home-page__new-content--link"> */}
                 <div className="home-page__new-content--item">
                   <div className="home-page__new-flashsale">
                     <div className="home-page__new-jmg">
@@ -63,7 +64,8 @@ class Search extends Component {
                     </div>
                   </div>
                 </div>
-              </a>
+              {/* </a> */}
+              </Link>
             </div>
 
             <div className="home-page__new-item home-page__new-hr">
