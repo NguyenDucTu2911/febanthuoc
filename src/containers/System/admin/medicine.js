@@ -1,11 +1,21 @@
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
-import {hendlegetThuoc, createNewMedicine, DeleteUser, editUsersv} from '../../../services/userService';
-import ModalEditUser from '../ModalEditUser';
+import {hendlegetThuoc, createNewMedicine, DeleteThuoc, editThuocsv} from '../../../services/userService';
+import ModalEditMedicini from '../ModalEditMedicini';
 import{emitter} from '../../../utils/emitter'
 import '../admin/medicine.scss'
 import ModaMedicine from '../ModaMedicine';
+import MarkdownIt from 'markdown-it';
+import MdEditor from 'react-markdown-editor-lite';
+// import style manually
+import 'react-markdown-editor-lite/lib/index.css';
+import Select from 'react-select';
+import * as actions from "../../../store/actions";
+
+
+const mdParser = new MarkdownIt(/* Markdown-it options */);
+
 
 class Medicine extends Component {
 
@@ -15,20 +25,58 @@ class Medicine extends Component {
         this.state={
             products: [],
             isOpenmodaMedicine: false,
+            isOpenModalEditMedicini: false,
+            selectedOption: '',
+            contentMar: '',
+            contentHtml: '',
+            listThuoc: [],
+            ThuocEdit: [],
         }
     }
     //gán giá trị
     async componentDidMount() {
       await this.getAllFormThuoc();
+      this.props.GETMEDICIN()
+    }
+
+    buidDataInput = (data)=>{
+        let result = [];
+        if(data && data.length > 0){
+        data.map((item,index)=>{
+            let object = {};
+            let thuoc = `${item.TenThuoc}`
+            object.label= thuoc
+            object.value = item.id;
+            result.push(object)
+        })   
+        }
+        return result;
+    }
+    componentDidUpdate(prevProps, prevState, snapshot){
+        console.log(this.props.allThuoc.data)
+
+        if(prevProps.allThuoc !== this.props.allThuoc){
+            let dataSelect = this.buidDataInput(this.props.allThuoc.data)
+            this.setState({
+                listThuoc: dataSelect
+            })
+        }
     }
   
     getAllFormThuoc = async ()=>{
-      let response = await hendlegetThuoc('ALL');
-      if(response && response.errCode === 0){
-          this.setState({
-            products: response.data,   
-          })
+        let response = await hendlegetThuoc('ALL');
+        if(response && response.errCode === 0){
+            this.setState({
+              products: response.data,   
+            })
+        }
       }
+
+    hendleEditThuoc = (thuoc)=>{
+    this.setState({
+        isOpenModalEditMedicini: true,
+        ThuocEdit: thuoc
+    })
     }
 
     //hendle
@@ -46,13 +94,22 @@ class Medicine extends Component {
        })
     }
 
+    toggleEditUserModal=()=>{
+        this.setState({
+            isOpenModalEditMedicini: !this.state.isOpenModalEditMedicini,
+
+       })
+    }
+
+    
+
     createThuoc = async(data)=>{
         try{
             let response = await createNewMedicine(data)
             if(response && response.message.errCode !==0){
                 alert(response.message.errMessage)
             }else{
-                await this.getAllFormUser();
+                await this.getAllFormThuoc();
                 this.setState({
                   isOpenmodaMedicine: false,
                })
@@ -63,27 +120,63 @@ class Medicine extends Component {
         }
     }
 
-    editUser = async(data)=>{
+    editThuoc = async(data)=>{
         try{
-            let response = await editUsersv(data)
+            let response = await editThuocsv(data)
             console.log(response)
             if(response && response.message.errCode !==0){
                 alert(response.message.errMessage)
             }else{
-                await this.getAllFormUser();
+                await this.getAllFormThuoc();
                 this.setState({
-                    isOpenModalEditUser: false,
+                    isOpenModalEditMedicini: false,
                })
             }
         }catch(e){
             console.log(e)
         }
     }
+    handleEditorChange =({ html, text })=> {
+        this.setState({
+            contentMar: text,
+            contentHtml: html,
+        })
+      }
+
+    heandleSave(){
+        console.log(this.state)
+    }
+
+    handleChange = (selectedOption) => {
+        this.setState({ selectedOption }, () =>
+          console.log(`Option selected:`, this.state.selectedOption)
+        );
+      };
     
+    
+    hendleDeleteThuoc = async(thuoc)=>{
+        try{
+            let res = await DeleteThuoc(thuoc.id)
+            if(res && res.message.errCode === 0 ){
+                await this.getAllFormThuoc();
+            }else{
+                alert(res.message.errMessage)
+            }
+
+        }catch(e){
+            console.log(e)
+        }
+    }
+   
+
     render() {
         let products = this.state.products
-        console.log(products)
+        const { selectedOption } = this.state;
+        console.log('helo',this.state)
+
         return (
+
+            <React.Fragment>
             <div className="Manageusers">
                <ModaMedicine
                     isOpen={this.state.isOpenmodaMedicine}
@@ -91,12 +184,12 @@ class Medicine extends Component {
                     createThuoc = {this.createThuoc}
                />
                 {
-                    this.state.isOpenModalEditUser &&
-                    <ModalEditUser
-                    isOpen={this.state.isOpenModalEditUser}
-                    toggleUserModal = {this.toggleEditUserModal}
-                    curentUser = {this.state.UserEdit}
-                    editUser ={this.editUser}
+                    this.state.isOpenModalEditMedicini &&
+                    <ModalEditMedicini
+                    isOpen={this.state.isOpenModalEditMedicini}
+                    toggleThuocModal = {this.toggleEditUserModal}
+                    curentUser = {this.state.ThuocEdit}
+                    editThuoc ={this.editThuoc}
                />
                 }
                
@@ -148,12 +241,12 @@ class Medicine extends Component {
                         
                                         <td>
                                             <button className='btn-edit'
-                                            onClick={()=>this.hendleEditUser(item)}>
+                                            onClick={()=>this.hendleEditThuoc(item)}>
                                                 <i className="fas fa-user-edit edit-item"></i>
                                             </button>
 
                                             <button className='btn-delete'
-                                            onClick={()=>this.hendalDleteUser(item)}>
+                                            onClick={()=>this.hendleDeleteThuoc(item)}>
                                                 <i className="far fa-trash-alt delete-item"></i>
                                             </button>
                                         </td>
@@ -165,6 +258,24 @@ class Medicine extends Component {
                     </tbody>    
                 </table>
             </div>
+            <div id='CtThuoc' className='thuoc'>
+                <div className='ctThuoc-title'>
+                    <span>Tạo Thông Tin Thuốc</span>
+                    <button 
+                    onClick={()=>this.heandleSave()} 
+                    className='btn-save'>Lưu</button>
+                </div>
+                <div className='select'>
+                    <Select
+                        value={selectedOption}
+                        onChange={this.handleChange}
+                        options={this.state.listThuoc}
+                    />
+                </div>
+                <MdEditor style={{ height: '500px' }} renderHTML={text => mdParser.render(text)} 
+                onChange={this.handleEditorChange} />
+            </div>
+            </React.Fragment>
         );
     }
 
@@ -172,12 +283,21 @@ class Medicine extends Component {
 
 const mapStateToProps = state => {
     return {
+        allThuoc: state.admin.allThuoc
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
+        GETMEDICIN: ()=> dispatch(actions.GETMEDICIN())
     };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Medicine);
+
+
+// Register plugins if required
+// MdEditor.use(YOUR_PLUGINS_HERE);
+
+// Initialize a markdown parser
+

@@ -3,16 +3,43 @@ import { connect } from 'react-redux';
 
 import * as actions from "../../store/actions";
 import Navigator from '../../components/Navigator';
-import { adminMenu } from './menuApp';
+import { adminMenu, NhanvienMenu } from './menuApp';
 import './Header.scss';
-import { languages } from "../../utils"
+import { languages, ROLE } from "../../utils"
 import { FormattedMessage } from "react-intl";
+import _ from 'lodash';
 
 
 class Header extends Component {
+
+    constructor(props){
+        super(props);
+        this.state ={
+            menuapp: []
+        }
+    }
     Changelanguage = (language) => {
         this.props.ChangelanguageApp(language);
       };
+
+    componentDidMount(){
+        let {userInfo}  = this.props;
+        let MENU = [];
+        if(userInfo && !_.isEmpty(userInfo)){
+            let role = userInfo.Quyen;
+            if(role === ROLE.admin){
+                MENU = adminMenu;
+            }
+            if(role === ROLE.QuanLy){
+                MENU = NhanvienMenu;
+            }
+ 
+        }
+        this.setState({
+            menuapp: MENU
+        })
+    }
+
     render() {
         const { processLogout,language,userInfo } = this.props;
         
@@ -21,7 +48,7 @@ class Header extends Component {
             <div className="header-container">
                 {/* thanh navigator */}
                 <div className="header-tabs-container">
-                    <Navigator menus={adminMenu} />
+                    <Navigator menus={this.state.menuapp} />
                 </div>
                 <div className='languages'>
                     <span className='wellcome'><FormattedMessage id={'homeheader.wellcome'} />: {userInfo && userInfo.TaiKhoan? userInfo.TaiKhoan: ''}</span>

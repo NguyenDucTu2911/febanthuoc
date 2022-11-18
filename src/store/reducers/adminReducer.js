@@ -5,6 +5,7 @@ const initialState = {
     ROLL:[],
     // isLoggedIn: false,
     // userInfo: null
+    allThuoc: []
 }
 
 const adminReducer = (state = initialState, action) => {
@@ -32,6 +33,16 @@ const adminReducer = (state = initialState, action) => {
             }
 
         case actionTypes.FETCH_ROLE_FAIL:
+            return {
+                ...state,
+            }
+        case actionTypes.GET_MEDICINE_FAIL:
+            state.allThuoc = [];
+            return {
+                ...state,
+            }
+        case actionTypes.GET_MEDICINE_SUCCESS:
+            state.allThuoc = action.data
             return {
                 ...state,
             }

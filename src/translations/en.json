@@ -70,6 +70,10 @@
             "manage-Employee":"Employee",
             "manage-Customer":"Customer",
             "manage-medicine":"medicine"
+        },
+        "sale":{
+            "sale":"Sale",
+            "import_goods":"import goods"
         }
     } 
 }

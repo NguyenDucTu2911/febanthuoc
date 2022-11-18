@@ -29,4 +29,29 @@ export const adminMenu = [
 
         
     },
+    { //quản lý NHAP XUAT BAN
+        name: 'menu.sale.sale',
+        menus: [
+            {
+                name: 'menu.sale.import_goods',link: '/system/importgoods',
+            },
+            
+        ]
+
+        
+    },
+];
+
+export const NhanvienMenu = [
+    { //quản lý thuốc
+        name: 'menu.admin.manage-medicine',
+        menus: [
+            {
+                name: 'menu.admin.manage-administer',link: '/system/medicine',
+            },
+            
+        ]
+
+        
+    },
 ];

@@ -1,5 +1,5 @@
 import actionTypes from './actionTypes';
-import {getAllCodeServices,createNewMedicine} from "../../services/userService"
+import {getAllCodeServices,createNewMedicine,hendlegetAllThuoc} from "../../services/userService"
 
 export const addUserSuccess = () => ({
     type: actionTypes.ADD_USER_SUCCESS
@@ -91,6 +91,29 @@ export const MEDICINEStart=(data)=>{
             }
         }catch(e){{
             dispatch(MEDICINEFail());
+        }}
+    }  
+}
+
+
+export const GETMEDICIN=()=>{
+    return async (dispatch, getstate)=>{
+        try{
+            let res = await hendlegetAllThuoc();
+            if(res && res.errCode === 0){
+                dispatch({
+                    type: actionTypes.GET_MEDICINE_SUCCESS,
+                    data: res.data
+                }) 
+            }else{
+                dispatch({
+                    type: actionTypes.GET_MEDICINE_FAIL
+                });
+            }
+        }catch(e){{
+            dispatch({
+                type: actionTypes.GET_MEDICINE_FAIL
+            });
         }}
     }  
 }

@@ -73,6 +73,10 @@
         },
         "medicine":{
             "manage-medicine":"Thuốc"
+        },
+        "sale":{
+            "sale":"bán hàng",
+            "import_goods":"Hàng"
         }
     }
     

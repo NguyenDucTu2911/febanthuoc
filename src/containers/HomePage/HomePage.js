@@ -23,7 +23,7 @@ class HomePage extends Component {
                 
                 <Directory/>
                 <MedicineFe/>
-                <Products/>
+                {/* <Products/> */}
                 <Footter/>  
             </div>
         

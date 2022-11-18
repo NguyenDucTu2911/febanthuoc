@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { Button ,Modal, ModalBody, ModalHeader, ModalFooter } from 'reactstrap';
+import _ from 'lodash';
 import{emitter} from '../../utils/emitter'
 import {
     Form,
@@ -12,9 +13,10 @@ import {
     Row,
     Table,
   } from "reactstrap";
-import CommonUtils from '../../utils/CommonUtils';
 
-class ModaMedicine extends Component {
+
+
+class ModalEditMedicini extends Component {
 
     constructor(props) {
         super(props);
@@ -60,35 +62,48 @@ class ModaMedicine extends Component {
             })
         })
     }
+
     componentDidMount() {
+        let {curentUser}=this.props;
+        if(curentUser && !_.isEmpty(curentUser)){
+            this.setState({
+                id: curentUser.id,
+                TenThuoc: curentUser.TenThuoc,
+                DangBaoChe :curentUser.DangBaoChe,
+                TacDung : curentUser.TacDung,
+                ThanhPhanChinh : curentUser.ThanhPhanChinh,
+                DoTuoi : curentUser.DoTuoi,
+                DonGia : curentUser.DonGia,
+                DVT : curentUser.DVT,
+                SoLuong : curentUser.SoLuong,
+                QuyCach : curentUser.QuyCach,
+                ChiDinh : curentUser.ChiDinh,
+                ThuocCanKeToa : curentUser.ThuocCanKeToa,
+                ChongChiDinh : curentUser.ChongChiDinh,
+                SoDangKy : curentUser.SoDangKy,
+                Anh: curentUser.Anh,
+                MaNhomThuoc :curentUser.MaNhomThuoc,
+            })
+        }
     }
 
     toggle =()=>{
         this.props.toggleThuocModal();
     }
+    
     hendalOnChaneInput =(even, id)=>{
         let copyState = {...this.state}
         copyState[id] = even.target.value;
+       
         this.setState({
             ...copyState  
         })
     }
 
-    hendalOnChaneImg = async (event)=>{
-        let data = event.target.files;
-        let file = data[0];
-        if(file){
-            let base64 = await CommonUtils.getBase64(file)
-            this.setState({
-                Anh: base64
-            })
-        }
-    }
-
-    hendalAddThuoc =()=>{
+    hendalSave =()=>{
         let check = this.checkValidateInput();
         if(check === true){
-            this.props.createThuoc(this.state)
+            this.props.editThuoc(this.state)
         }
     }
 
@@ -285,7 +300,7 @@ class ModaMedicine extends Component {
             </ModalBody>
                 <ModalFooter>
                     <Button className='btn-modal' color='primary' 
-                        onClick={()=>{this.hendalAddThuoc()}}>Thêm</Button>{''}
+                        onClick={()=>{this.hendalSave()}}>Lưu</Button>{''}
                     <Button className='btn-modal' color='secondary' onClick={()=>{this.toggle()}}>Hủy</Button>
                 </ModalFooter>
             </Modal>
@@ -304,7 +319,7 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ModaMedicine);
+export default connect(mapStateToProps, mapDispatchToProps)(ModalEditMedicini);
 
 
 

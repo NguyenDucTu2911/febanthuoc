@@ -36,7 +36,26 @@ const hendlegetThuoc =(id) =>{
     return axios.get(`/api/getMedicine?id=${id}`);
 }
 
+const hendlegetAllThuoc =() =>{
+    return axios.get(`api/getAllMedicine`);
+}
+
+const editThuocsv=(data)=>{
+    return axios.put('/api/UpdateMedicine',data)
+}
+
+const DeleteThuoc = (id)=>{
+    return axios.delete('/api/deleteMedicine',{
+        data: {
+            id: id
+        }
+    });
+}
+
+
+
 
 export {hendleLoginApi,hendlegetUser,createNewUser,DeleteUser,editUsersv,
-    getAllCodeServices,createNewMedicine,hendlegetThuoc
+    getAllCodeServices,createNewMedicine,hendlegetThuoc,hendlegetAllThuoc,
+    editThuocsv,DeleteThuoc
 }

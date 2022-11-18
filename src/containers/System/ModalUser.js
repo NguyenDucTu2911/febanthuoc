@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { Button ,Modal, ModalBody, ModalHeader, ModalFooter } from 'reactstrap';
-import{emitter} from '../../utils/emitter'
-
+import{emitter} from '../../utils/emitter';
+import {toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class ModalUser extends Component {
 
@@ -67,10 +68,18 @@ class ModalUser extends Component {
         let arr = ['TaiKhoan', 'MatKhau', 'HoTen','Email' ,'GioiTinh','NgaySinh' ,
         'SoDT','DiaChi','idCV','Quyen'];
         for(let i = 0; i < arr.length ; i++){
-            console.log(this.state[arr[i]],arr[i])
             if(!this.state[arr[i]]){
                 isvalid = false;
-                alert(`vui lòng nhập: ${arr[i]}`)
+                toast.error(`vui lòng nhập: ${arr[i]}`, {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: false,
+                    progress: undefined,
+                    theme: "colored",
+                        });
                 break;
             }
         }
@@ -180,9 +189,9 @@ class ModalUser extends Component {
                                 onChange={(even)=> {this.hendalOnChaneInput(even, 'idCV')}}
                                 value={this.state.idCV} >
                                 <option value="DEFAULT" selected>Chọn...</option>
-                                <option value="R1" >Giám Đốc</option>
-                                <option value="R2">Quản Lý</option>
-                                <option value="R3">Nhân Viên sale</option>
+                                <option value="1" >Giám Đốc</option>
+                                <option value="2">Quản Lý</option>
+                                <option value="3">Nhân Viên sale</option>
                                 </select>
                             </div>
 
@@ -192,14 +201,13 @@ class ModalUser extends Component {
                                 onChange={(even)=> {this.hendalOnChaneInput(even, 'Quyen')}}
                                 value={this.state.Quyen} >
                                 <option value="DEFAULT"  selected>Chọn...</option>
-                                <option value="1">admin</option>
-                                <option value="2">Quản Lý</option>
-                                <option value="3">Nhân Viên</option>
+                                <option value="R1">admin</option>
+                                <option value="R2">Quản Lý</option>
+                                <option value="R3">Nhân Viên</option>
                                 </select>
                             </div>
                         </div>
-                    </div>
-                            
+                    </div>         
                 </ModalBody>
                 <ModalFooter>
                     <Button className='btn-modal' color='primary' 

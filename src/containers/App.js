@@ -20,6 +20,8 @@ import CustomScrollbars from '../components/CustomScrollbars';
 import { CustomToastCloseButton } from '../components/CustomToast';
 import ConfirmModal from '../components/ConfirmModal';
 
+
+
 class App extends Component {
 
     handlePersistorState = () => {

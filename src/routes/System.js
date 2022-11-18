@@ -6,6 +6,7 @@ import medicine from '../containers/System/admin/medicine';
 import Header from '../containers/Header/Header';
 import Employee from '../containers/System/admin/Employee';
 import Customer from '../containers/System/admin/Customer';
+import importgoods from '../containers/System/admin/importgoods'
 class System extends Component {
     render() {
         const { systemMenuPath,isLoggedIn } = this.props;
@@ -19,6 +20,7 @@ class System extends Component {
                         <Route path="/system/Employee" component={Employee} />
                         <Route path="/system/Customer" component={Customer} />
                         <Route path="/system/medicine" component={medicine} />
+                        <Route path="/system/importgoods" component={importgoods} />
                         <Route component={() => { return (<Redirect to={systemMenuPath} />) }} />
                     </Switch>
                 </div>
