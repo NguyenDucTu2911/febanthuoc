@@ -52,10 +52,16 @@ const DeleteThuoc = (id)=>{
     });
 }
 
+const SaveDeteil = (data)=>{
+    return axios.post('/api/SaveMedicine', data)
+}
 
+const getDetailMec = (id)=>{
+    return axios.get(`/api/getDetailMedicine?id=${id}`)
+}
 
 
 export {hendleLoginApi,hendlegetUser,createNewUser,DeleteUser,editUsersv,
     getAllCodeServices,createNewMedicine,hendlegetThuoc,hendlegetAllThuoc,
-    editThuocsv,DeleteThuoc
+    editThuocsv,DeleteThuoc,SaveDeteil,getDetailMec
 }

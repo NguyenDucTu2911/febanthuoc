@@ -3,69 +3,120 @@ import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import "./Detail.scss";
 import { Button } from "reactstrap";
+import HomeHeader from "../HomeHeader";
+import { getDetailMec } from "../../../services/userService";
+import ModaCart from "./Modal/ModaCart";
+
 class Detail extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state={
-       
-    }
+    this.state = {
+      detailThuoc: [],
+    };
   }
 
   async componentDidMount() {
+    if (
+      this.props.match &&
+      this.props.match.params &&
+      this.props.match.params.id
+    ) {
+      let id = this.props.match.params.id;
+      let res = await getDetailMec(id);
+      if (res && res.errCode === 0) {
+        this.setState({
+          detailThuoc: res.data,
+        });
+      }
+    }
+    // this.props.actFetchProductsRequest();
   }
-  
+  componentDidUpdate(prevProps, prevState, snapshot) {}
+
   render() {
+    let { detailThuoc } = this.state;
+    // console.log(detailThuoc.Contents.ContentsHTML)
     return (
-      <div className="Detail">
-        <div className="Detail-title">
-            <div className="title-img">
-            
-            </div>
+      <React.Fragment>
+        <HomeHeader />
+        <div className="Detail">
+          <div className="Detail-title">
+            <div
+              className="title-img"
+              style={{ backgroundImage: `url(${detailThuoc.Anh})` }}
+            ></div>
             <div className="title-content">
-                <div className="content-title">
-                    <span className="title-item">
-                    Siro bổ phế Bối Mẫu Forte Mom And Baby Tất Thành hỗ trợ giảm ho, đau rát họng, khản tiếng (125ml)
-                    </span>
-                </div>
+              <div className="content-title">
+                <span className="title-item">{detailThuoc.TenThuoc}</span>
+              </div>
+              <div className="container">
                 <div className="content-body">
-                <div className="price-loai">
-                    <span className="body-price">49.000đ</span>
-                    <span className="body-loai">chai</span>
-                </div>
-                <div className="body-loai">
-                  <div className="loai-danmuc">Danh mục:
-                  <span className="loai-item">Hô hấp, ho, xoang</span>
+                  <div className="price-loai">
+                    <span className="body-price">{detailThuoc.DonGia}đ /</span>
+                    <span className="body-loai">{detailThuoc.QuyCach}</span>
                   </div>
-                  <div className="loai-danmuc">Dạng bào chế:
-                  <span className="loai-item">Dung dịch</span> 
-                  </div>
-                  <div className="loai-danmuc">Quy cách:
-                  <span className="loai-item">1 Chai x 1 Chai</span> 
-                  </div>
-                  <div className="loai-danmuc">Xuất xứ thương hiệu:
-                  <span className="loai-item">Việt Nam</span> 
-                  </div>
-                  <div className="loai-danmuc">Nhà sản xuất:
-                  <span className="loai-item">CN CTY CP DƯỢC PHẨM SYNTECH</span>
-                  </div>
-                  <div className="loai-danmuc">Công dụng:
-                  <span className="loai-item"> Bối Mẫu Forte Tất Thành hỗ trợ bổ phổi ích phế, hỗ trợ giảm ho, đau rát họng, khản tiếng.</span>
+                  <div className="body-loai">
+                    <div className="loai-danmuc">
+                      Thành Phần Chính:
+                      <span className="loai-item">
+                        {detailThuoc.ThanhPhanChinh}
+                      </span>
+                    </div>
+                    <div className="loai-danmuc">
+                      Dạng bào chế:
+                      <span className="loai-item">
+                        {detailThuoc.DangBaoChe}
+                      </span>
+                    </div>
+                    <div className="loai-danmuc">
+                      Độ Tuổi:
+                      <span className="loai-item">{detailThuoc.DoTuoi}</span>
+                    </div>
+                    <div className="loai-danmuc">
+                      Chống Chỉ Định:
+                      <span className="loai-item">
+                        {detailThuoc.ChongChiDinh}
+                      </span>
+                    </div>
+                    <div className="loai-danmuc">
+                      Thuốc Cần Kê Toa:
+                      <span className="loai-item">
+                        {detailThuoc.ThuocCanKeToa}
+                      </span>
+                    </div>
+                    <div className="loai-danmuc">
+                      Công dụng:
+                      <span className="loai-item">{detailThuoc.TacDung}</span>
+                    </div>
                   </div>
                 </div>
                 <div className="content-foodter">
-                <Button>
-                  Thêm Hàng
-                </Button>
-                <Button>
-                  Mua Ngay
-                </Button>
+                  <Button
+                  // onClick={() => this.props.AddCart(detailThuoc)}
+                  >
+                    Thêm Hàng
+                  </Button>
+                  <Button>Mua Ngay</Button>
                 </div>
+              </div>
             </div>
+            <div className="Detail-body"></div>
+          </div>
+          <div className="content-detail">
+            {detailThuoc &&
+              detailThuoc.Contents &&
+              detailThuoc.Contents.ContentsHTML && (
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: detailThuoc.Contents.ContentsHTML,
+                  }}
+                ></div>
+              )}
+          </div>
         </div>
-        <div className="Detail-body">
-        </div>
-      </div>
-      </div>
+
+        <ModaCart />
+      </React.Fragment>
     );
   }
 }
@@ -77,7 +128,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return { };
+  return {};
 };
 
 export default Detail;

@@ -8,9 +8,11 @@ import {Link} from 'react-router-dom';
 class Search extends Component {
   render() {
     return (
+      
       <div className="home-page__new">
         <div className="home-page__nav">
-          <nav className="home-page__nav-herder" style={{ top: "56px" }}>
+          
+          <nav className="home-page__nav-herder" style={{ top: "56px" }}> 
             <ul className="home-page__nav-content">
               <li className="home-page__nav-list">
                 <span style={{ color: "#000000e6" }}>
@@ -31,7 +33,7 @@ class Search extends Component {
               </li>
             </ul>
           </nav>
-
+        
           <div className="home-page__new-content">
             <div className="home-page__new-item home-page__new-hr">
             <Link to="/detail">

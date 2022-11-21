@@ -1,37 +1,48 @@
-import React, { Component,useState, useEffect } from "react";
+import React, { Component, useState, useEffect } from "react";
 import { connect } from "react-redux";
 import "./Section/HomeHeader.scss";
 import { FormattedMessage } from "react-intl";
 import { languages } from "../../utils/constant";
 import { ChangelanguageApp } from "../../store/actions/appActions";
+import { withRouter } from "react-router";
 
 class HomeHeader extends Component {
-
-  
   Changelanguage = (language) => {
     this.props.ChangelanguageApp(language);
   };
+  toHome = () => {
+    if (this.props.history) {
+      this.props.history.push("/Home");
+    }
+  };
   render() {
     let language = this.props.language;
-    
+
     return (
       <div className="HomeHeader-container">
         <div className="HomeHeader-content">
           <div className="HomeHeader-content_item">
             <div className="top_content">
               <div className="left_content">
-                <div className="header-logo"></div>
+                <div
+                  className="header-logo"
+                  onClick={() => this.toHome()}
+                ></div>
               </div>
               <div className="center_content">
                 <div className="child_content">
-                  <p>
-                    <FormattedMessage id="homeheader.Medicine" />
-                  </p>
+                  <a href="#ConTainer">
+                    <p>
+                      <FormattedMessage id="homeheader.Medicine" />
+                    </p>
+                  </a>
                 </div>
-                <div className="child_content">
-                  <p>
-                    <FormattedMessage id="homeheader.Functional_foods" />
-                  </p>
+                <div className="child_content" onClick={() => this.toHome()}>
+                  <a href="#TPCN">
+                    <p>
+                      <FormattedMessage id="homeheader.Functional_foods" />
+                    </p>
+                  </a>
                 </div>
                 <div className="child_content">
                   <p>
@@ -43,17 +54,16 @@ class HomeHeader extends Component {
                 <div className="cart">
                   <i class="fas fa-shopping-cart navication-cart__shop__input">
                     <span className="cart-text">
-                        <FormattedMessage id="homeheader.cart" />
+                      <FormattedMessage id="homeheader.cart" />
                     </span>
                     <div className="navication-cart__shop-icon">
-                        <header class="navication-cart__header">
+                      <header class="navication-cart__header">
                         <span>
-                        <FormattedMessage id="homeheader.add_new" />
+                          <FormattedMessage id="homeheader.add_new" />
                         </span>
-                        </header>
-                        <ul class="navication-cart-list">
-                            
-                          {/* <button
+                      </header>
+                      <ul class="navication-cart-list">
+                        {/* <button
                                 className="btn shopping-cart-btn"
                                 onClick={() =>
                                   setCartVisible(true)
@@ -69,13 +79,12 @@ class HomeHeader extends Component {
                                 )}
                               </button>
                                */}
-                        </ul>
-                    <footer class="header__navication-footer">
-                      <a href="" class="header__navication-footer-btn">
-                        <FormattedMessage id="homeheader.View_cart" />
-                      </a>
-                    </footer>
-
+                      </ul>
+                      <footer class="header__navication-footer">
+                        <a href="" class="header__navication-footer-btn">
+                          <FormattedMessage id="homeheader.View_cart" />
+                        </a>
+                      </footer>
                     </div>
                   </i>
                 </div>
@@ -120,6 +129,6 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeHeader);
-
-
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(HomeHeader)
+);

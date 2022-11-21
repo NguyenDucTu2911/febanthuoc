@@ -1,5 +1,7 @@
 import actionTypes from './actionTypes';
-import {getAllCodeServices,createNewMedicine,hendlegetAllThuoc} from "../../services/userService"
+import {getAllCodeServices,createNewMedicine,hendlegetAllThuoc, SaveDeteil} from "../../services/userService"
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const addUserSuccess = () => ({
     type: actionTypes.ADD_USER_SUCCESS
@@ -117,3 +119,47 @@ export const GETMEDICIN=()=>{
         }}
     }  
 }
+
+
+export const SAVEMEDICIN=(data)=>{
+    return async (dispatch, getstate)=>{
+        try{
+            let res = await SaveDeteil(data);
+            if(res && res.errCode === 0){
+                toast.success("Lưu Thành Công", {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    })
+                dispatch({
+                    type: actionTypes.SAVE_DETAIL_MEDICINE_SUCCESS,
+                    data: res.data
+                }) 
+            }else{
+                toast.error("Thất Bại", {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    })
+                dispatch({
+                    type: actionTypes.SAVE_DETAIL_MEDICINE_FAIL
+                });
+            }
+        }catch(e){{
+            dispatch({  
+                type: actionTypes.SAVE_DETAIL_MEDICINE_FAIL
+            });
+        }}
+    }  
+}
+

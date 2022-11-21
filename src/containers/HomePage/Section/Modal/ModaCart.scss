@@ -1,0 +1,84 @@
+.CartModal{
+    .modal-content{
+        height: 500px;
+        .modal-herder{
+            width: 100%;
+            height: 50px;
+            display: flex;
+            background-color: #144da1;
+            color: #fff;
+            line-height: 52px;
+            .modal_text{
+                width: 100%;
+                text-align: center;
+                font-size: 19px;
+                font-weight: bold;
+                margin-left: 27px;
+                .modal_close{
+                    float: right;
+                    width: 8%;
+                    font-size: 21px;
+                    &:hover{
+                        cursor: pointer;
+                        color: red;
+                    }
+                }
+
+            }
+            
+        
+        }
+        .modal-body{
+            padding: 0;
+            height: 100px;
+                .body-conten {
+                    display: flex;
+                    .TT-item {
+                        width: 57%;
+                        margin: 10px;
+                      }
+                    .Price-sum {
+                        width: 50%;
+                    }
+                }
+             
+            .modal-item{
+                height: 100px;
+                .item-content{
+                    display: flex;
+                    height: 100%;
+                    border: 1px solid rgb(153, 0, 255);
+                    .item-img{
+                        height: 100%;
+                        width: 15%;
+                        border: 1px solid #00eeff;
+
+                    }
+                    .item-name{
+                        width: 70%;
+                         height: 100%;
+                        border: 1px solid rgb(153, 0, 255);
+
+                    }
+                    .item-price{
+                        width: 15%;
+                         height: 100%;
+                    border: 1px solid rgb(255, 0, 43);
+                        
+                    }
+
+                }
+            }
+
+
+        }
+        .modal-foodter{
+            height: 30px;
+            border: 1px solid rgb(0, 255, 13);
+
+        }
+    }
+    
+}
+
+
