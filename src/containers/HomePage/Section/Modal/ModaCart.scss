@@ -39,18 +39,40 @@
                       }
                     .Price-sum {
                         width: 50%;
+                        height: 174px;
+                        margin-top: 34px;
+                        .content-containr {
+                            height: 80%;
+                            width: 80%;
+                            text-align: center;
+                            border: 1px solid red;
+                            margin: auto;
+                            border-radius: 11px;
+                            .sum-title {
+                                font-size: 20px;
+                                font-weight: bold;
+                                height: 40%;
+                                line-height: 55px;
+                                .sum{
+                                    .sum-total {
+                                        font-size: 16px;
+                                        font-weight: 700;
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
              
             .modal-item{
-                height: 100px;
+                 height: 140px;
                 .item-content{
                     display: flex;
                     height: 100%;
-                    border: 1px solid rgb(153, 0, 255);
+                    border-bottom: 3px solid #dee2e6;
                     .item-img{
                         height: 100%;
-                        width: 15%;
+                        width: 30%;
                         border: 1px solid #00eeff;
 
                     }
@@ -61,7 +83,7 @@
 
                     }
                     .item-price{
-                        width: 15%;
+                        width: 20%;
                          height: 100%;
                     border: 1px solid rgb(255, 0, 43);
                         
@@ -73,8 +95,27 @@
 
         }
         .modal-foodter{
-            height: 30px;
-            border: 1px solid rgb(0, 255, 13);
+            height: 50px;
+            border-top: 2px solid #dee2e6;
+            .btn-DH {
+                text-align: center;
+                margin: -22px;
+                /* height: 10px; */
+                .button-tt {
+                    border: none;
+                    height: 34px;
+                    font-weight: bold;
+                    font-size: 15px;
+                    border-radius: 7px;
+                    box-shadow: 1px 1px 1px 1px #6a0606;
+                    &:hover{
+                        cursor: pointer;
+                        background-color: rgba(15, 37, 228, 0.842);
+                        color: #fff;
+                    }
+                
+                }
+            }
 
         }
     }

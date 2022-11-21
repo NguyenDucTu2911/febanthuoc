@@ -73,16 +73,22 @@ class ModaCart extends Component {
                   </Form>
                 </div>
                 <div className="Price-sum">
-                  <div className="sum-title">Thành Tiền</div>
-                  <div className="sum">
-                    <span className="sum-total">Tổng Tiền</span>
-                    <span className="sum-total-d">100.000 VND</span>
+                  <div className="content-containr">
+                    <div className="sum-title">Thành Tiền</div>
+                    <div className="sum">
+                      <span className="sum-total">Tổng Tiền:</span>
+                      <span className="sum-total-d">100.000 VND</span>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div className="modal-foodter"></div>
+          <div className="modal-foodter">
+            <div className="btn-DH">
+              <button className="button-tt">Mua Hàng</button>
+            </div>
+          </div>
         </div>
       </Modal>
     );
