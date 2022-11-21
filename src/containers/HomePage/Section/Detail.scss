@@ -13,6 +13,7 @@
             width: 70%;
             height: 300px;
             margin: 28px;
+            object-fit: cover;
         }
         .title-content{
             margin: 12px;
@@ -56,9 +57,11 @@
     }
     .content-detail{
         width: 80%;
-        height: 600px;
+        height: auto;
         margin: auto;
         padding-top: 20px;
+        padding: 20px 10px;
+        background-color: #e9ecef42;
         img {
         width: 100%;
         /* margin: auto; */

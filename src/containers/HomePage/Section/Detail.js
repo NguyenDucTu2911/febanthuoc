@@ -12,6 +12,8 @@ class Detail extends Component {
     super(props);
     this.state = {
       detailThuoc: [],
+      isOpenModal: false,
+      dataThuoc: [],
     };
   }
 
@@ -33,8 +35,21 @@ class Detail extends Component {
   }
   componentDidUpdate(prevProps, prevState, snapshot) {}
 
+  heandclick(data) {
+    this.setState({
+      isOpenModal: true,
+      dataThuoc: data,
+    });
+  }
+
+  closeModa = () => {
+    this.setState({
+      isOpenModal: false,
+    });
+  };
+
   render() {
-    let { detailThuoc } = this.state;
+    let { detailThuoc, isOpenModal, dataThuoc } = this.state;
     // console.log(detailThuoc.Contents.ContentsHTML)
     return (
       <React.Fragment>
@@ -96,7 +111,9 @@ class Detail extends Component {
                   >
                     Thêm Hàng
                   </Button>
-                  <Button>Mua Ngay</Button>
+                  <Button onClick={() => this.heandclick(detailThuoc)}>
+                    Mua Ngay
+                  </Button>
                 </div>
               </div>
             </div>
@@ -115,7 +132,11 @@ class Detail extends Component {
           </div>
         </div>
 
-        <ModaCart />
+        <ModaCart
+          isOpenModal={isOpenModal}
+          closeModa={this.closeModa}
+          dataThuoc={dataThuoc}
+        />
       </React.Fragment>
     );
   }

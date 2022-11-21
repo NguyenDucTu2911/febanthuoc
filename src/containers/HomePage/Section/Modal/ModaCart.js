@@ -17,16 +17,17 @@ import {
 class ModaCart extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.setState({});
   }
 
   async componentDidMount() {}
   componentDidUpdate(prevProps, prevState, snapshot) {}
 
   render() {
+    let { isOpenModal, closeModa, dataThuoc } = this.props;
     return (
       <Modal
-        isOpen={true}
+        isOpen={isOpenModal}
         // toggle={this.toggle}
         className={"CartModal"}
         size="lg"
@@ -36,7 +37,7 @@ class ModaCart extends Component {
           <div className="modal-herder">
             <span className="modal_text">
               Giỏ Hàng
-              <div className="modal_close">
+              <div className="modal_close" onClick={closeModa}>
                 <i class="far fa-times-circle"></i>
               </div>
             </span>
@@ -44,9 +45,11 @@ class ModaCart extends Component {
           <div className="modal-body">
             <div className="modal-item">
               <div className="item-content">
-                <div className="item-img"></div>
-                <div className="item-name"></div>
-                <div className="item-price"></div>
+                <div
+                  className="item-img"
+                  style={{ backgroundImage: `url(${dataThuoc.Anh})` }}
+                ></div>
+                <div className="item-price">{dataThuoc.DonGia} ₫</div>
               </div>
             </div>
             <div className="body-TT">
@@ -77,7 +80,9 @@ class ModaCart extends Component {
                     <div className="sum-title">Thành Tiền</div>
                     <div className="sum">
                       <span className="sum-total">Tổng Tiền:</span>
-                      <span className="sum-total-d">100.000 VND</span>
+                      <span className="sum-total-d">
+                        {dataThuoc.DonGia} VND
+                      </span>
                     </div>
                   </div>
                 </div>
