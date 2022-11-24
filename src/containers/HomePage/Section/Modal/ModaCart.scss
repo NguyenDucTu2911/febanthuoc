@@ -82,7 +82,42 @@
                         height: 100%;
                         font-size: 20px;
                         font-weight: bold;
-                        padding: 40px 6px;
+                        padding: 14px 6px;
+                        .App {
+                        width: 70%;
+                        height: 100%;
+                        font-size: 20px;
+                        font-weight: bold;
+                        padding: 14px 6px;
+                        .quantity-picker {
+                        display: inline-block;
+                        border: 1px solid #d01a1d;
+                        border-radius: 3px;
+                        vertical-align: middle;
+                        .quantity-modifier {
+                            width: 16px;
+                            font-size: 10px;
+                            background: #f3f3f3;
+                            color: #888;
+                            border: 0 solid #dbdbdb;
+                            text-align: center;
+                            cursor: pointer;
+                            height: 17px;
+                            line-height: 12px;
+                        }
+                        .quantity-display {
+                            width: 4rem;
+                            /* padding: .5rem; */
+                            font-size: 1.5rem;
+                            border: 0;
+                            border-top: 0 solid #dbdbdb;
+                            border-bottom: 0 solid #dbdbdb;
+                            text-align: center;
+                            height: 22px;
+                        }
+                    }
+                    }
+
 
                     }
                     .item-price{      
@@ -98,6 +133,7 @@
                             color: red;
                         }
                     }
+                    
 
                 }
             }

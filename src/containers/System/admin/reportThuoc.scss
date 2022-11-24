@@ -1,0 +1,44 @@
+.reportThuoc{
+    .container{
+        .header{
+            .herder-title{
+                .title{
+
+                }
+
+            }
+
+        }
+        .body{
+            .body-input{
+                margin: 12px 0;
+                .date-body {
+                        margin-right: 5px;
+                    }
+                .body-table{
+                   
+
+                }
+
+            }
+
+        }
+
+    }
+
+}
+table {
+font-family: arial, sans-serif;
+border-collapse: collapse;
+width: 100%;
+}
+
+td, th {
+border: 1px solid #dddddd;
+text-align: left;
+padding: 8px;
+}
+
+tr:nth-child(even) {
+background-color: #dddddd;
+}

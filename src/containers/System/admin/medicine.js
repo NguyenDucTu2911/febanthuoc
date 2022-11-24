@@ -233,7 +233,6 @@ class Medicine extends Component {
                 products.map((item, index) => {
                   return (
                     <>
-                     
                       <tr className="item">
                         <td>{item.TenThuoc}</td>
                         <td>{item.DangBaoChe}</td>

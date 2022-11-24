@@ -6,6 +6,7 @@ import { Button } from "reactstrap";
 import HomeHeader from "../HomeHeader";
 import { getDetailMec } from "../../../services/userService";
 import ModaCart from "./Modal/ModaCart";
+import Comment from "./SocialPlugin/Comment";
 
 class Detail extends Component {
   constructor(props) {
@@ -50,6 +51,9 @@ class Detail extends Component {
 
   render() {
     let { detailThuoc, isOpenModal, dataThuoc } = this.state;
+    // let cur = this.process.env.REACT_APP_IS_LOCALHOST == true ?
+    // "https://developers.facebook.com/apps/430806935750472/app-review/permissions/": window.location.href;
+
     // console.log(detailThuoc.Contents.ContentsHTML)
     return (
       <React.Fragment>
@@ -129,6 +133,9 @@ class Detail extends Component {
                   }}
                 ></div>
               )}
+          </div>
+          <div className="comment">
+            {/* <Comment dataHref={cur} width={"80%"} /> */}
           </div>
         </div>
 
