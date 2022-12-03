@@ -49,6 +49,13 @@ class HomeHeader extends Component {
                     <FormattedMessage id="homeheader.Pharmaceutical_product" />
                   </p>
                 </div>
+                <div className="child_content">
+                  <a href="#Map">
+                    <p>
+                      <FormattedMessage id="homeheader.Map" />
+                    </p>
+                  </a>
+                </div>
               </div>
               <div className="right_content">
                 <div className="cart">

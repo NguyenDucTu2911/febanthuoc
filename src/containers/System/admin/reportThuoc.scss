@@ -14,6 +14,22 @@
                 margin: 12px 0;
                 .date-body {
                         margin-right: 5px;
+                        
+                    }
+                .select3 {
+                        display: flex;
+                        width: 100%;
+                        .download-table-xls-button {
+                            width: 11%;
+                            background-color: #2acd59;
+                            margin-left: 10px;
+                            border: none;
+                            border-radius: 5px;
+                            &:hover{
+                                background-color:  #1a9738c4;
+                            }
+                        }
+                        
                     }
                 .body-table{
                    
@@ -42,3 +58,11 @@ padding: 8px;
 tr:nth-child(even) {
 background-color: #dddddd;
 }
+.css-b62m3t-container {
+    position: relative;
+    box-sizing: border-box;
+    width: 89%;
+    
+}
+
+

@@ -1,0 +1,16 @@
+button.btn-closeModal {
+    float: right;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    &:hover{
+        color: red;
+    }
+    
+}
+.close {
+    display: none;
+    }
+    .modal-title {
+    text-align: center;
+    width: 100%;
+}

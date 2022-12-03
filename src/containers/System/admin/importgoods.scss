@@ -10,13 +10,39 @@
 
         }
         .body{
+            margin-bottom: 10px;
             .body-input{
                 margin: 12px 0;
+                display: flex;
                 .date-body {
                         margin-right: 5px;
-                    }
+                        display: inline-block;
+                        width: 107px;
+                        line-height: 27px;
+                        
+                        
+                }
                 .body-table{
                    
+
+                }
+                .react-datepicker-wrapper {
+                    display: inline-block;
+                    padding: 0;
+                    border: 0;
+                    width: 82%;
+                }
+                .download-table-xls-button {
+                float: right;
+                border: none;
+                border-radius: 5px;
+                background-color: #1ac94d;
+                width: 72px;
+                height: 28px;
+                font-weight: 700;
+                    &:hover{
+                        background-color:  #1a9738c4;
+                    }
 
                 }
 

@@ -4,6 +4,22 @@ import "./Search.scss";
 import { FormattedMessage, injectIntl } from "react-intl";
 
 class Search extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      search: "",
+    };
+  }
+
+  heandSearch(event, id) {
+    let valueinput = event.target.value;
+    let statecopy = { ...this.state };
+    console.log(statecopy);
+    statecopy[id] = valueinput;
+    this.setState({
+      ...statecopy,
+    });
+  }
   render() {
     const { intl } = this.props;
     return (
@@ -22,6 +38,9 @@ class Search extends Component {
                     defaultMessage: "username",
                   })}
                   className="input-search"
+                  name="search"
+                  onChange={(event) => this.heandSearch(event, "search")}
+                  value={this.state.search}
                 ></input>
               </div>
               <div className="search-right">

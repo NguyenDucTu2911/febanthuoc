@@ -5,6 +5,7 @@ import { Button, Modal, ModalBody, ModalHeader, ModalFooter } from "reactstrap";
 import _ from "lodash";
 import { emitter } from "../../utils/emitter";
 import { Form, FormGroup, Label, Input, Col, Row, Table } from "reactstrap";
+import "./ModalEditMedicini.scss";
 
 import CommonUtils from "../../utils/CommonUtils";
 
@@ -171,7 +172,7 @@ class ModalEditMedicini extends Component {
             this.toggle();
           }}
         >
-          Thuốc
+          Thay Đổi Thông Tin Thuốc
           <button
             className="btn-closeModal"
             onClick={() => {

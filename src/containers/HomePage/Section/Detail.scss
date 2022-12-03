@@ -32,13 +32,17 @@
                     font-size: 14px;
                 .price-loai{
                     .body-price{
-
+                        color: red;
+                        font-weight: 600;
+                        font-size: 17px;
                     }  
                 }
                 .body-loai{
                     font-size: 17px;
                     font-weight: bold;
                     .loai-danmuc {
+                        display: block;
+                        text-align: justify;
                         .loai-item{
                             font-weight: 300;
                             }
@@ -73,6 +77,9 @@
     }
     .comment{
         padding: 10px 100px;
+        margin: auto;
+        width: 80%;
+        text-align: center;
     }
 
 }

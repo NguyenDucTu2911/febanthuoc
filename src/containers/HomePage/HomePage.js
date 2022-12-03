@@ -8,6 +8,8 @@ import Directory from "./Section/Directory";
 import Footter from "./Section/Footter";
 import MedicineFe from "./Section/MedicineFe";
 import Products from "./Section/Products";
+import Foorerfe from "./Foorerfe";
+import Map from "./Section/SocialPlugin/Map";
 class HomePage extends Component {
   render() {
     return (
@@ -21,6 +23,8 @@ class HomePage extends Component {
         <MedicineFe />
         {/* <Products/> */}
         <Footter />
+        <Map />
+        <Foorerfe />
       </div>
     );
   }

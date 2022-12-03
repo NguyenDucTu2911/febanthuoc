@@ -12,8 +12,9 @@ class Comment extends Component {
     if (window.FB) {
       window.FB.XFBML.parse();
     }
-    let { language } = this.props;
-    let locale = language === languages.VI ? "vi_VN" : "en_US";
+    let { languages } = this.props;
+    // let locale = languages === languages.VI ? "vi_VN" : "en_US";
+    let locale = "vi_VN";
     window.fbAsyncInit = function () {
       window.FB.init({
         appId: process.env.REACT_APP_FACEBOOK_APP_ID,
@@ -39,17 +40,20 @@ class Comment extends Component {
   }
   componentDidUpdate(prevProps, prevState, snapshot) {}
 
-    render() {
-      let {width, dataHref, numPost} = this.props
-      return (
-        <div
-          className="fb-comments"
-          data-href={dataHref}
-          data-With={width ? width : ""}
-          data-numposts={numPost ? numPost : 5}
-        ></div>
-      );
-    }
+  render() {
+    let { dataHref } = this.props;
+    return (
+      <div
+        className="fb-like"
+        data-href={dataHref}
+        data-width=""
+        data-layout="button"
+        data-action="like"
+        data-size="small"
+        data-share="true"
+      ></div>
+    );
+  }
 }
 
 const mapStateToProps = (state) => {

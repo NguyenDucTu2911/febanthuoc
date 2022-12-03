@@ -7,6 +7,8 @@ import HomeHeader from "../HomeHeader";
 import { getDetailMec } from "../../../services/userService";
 import ModaCart from "./Modal/ModaCart";
 import Comment from "./SocialPlugin/Comment";
+import Likes from "./SocialPlugin/likes";
+import Foorerfe from "../Foorerfe";
 
 class Detail extends Component {
   constructor(props) {
@@ -15,6 +17,7 @@ class Detail extends Component {
       detailThuoc: [],
       isOpenModal: false,
       dataThuoc: [],
+      cart: [],
     };
   }
 
@@ -35,6 +38,69 @@ class Detail extends Component {
     // this.props.actFetchProductsRequest();
   }
   componentDidUpdate(prevProps, prevState, snapshot) {}
+  checkProduct(productID) {
+    let cart = this.state.cart;
+    return cart.some(function (item) {
+      return item.id === productID;
+    });
+  }
+
+  AddCart(data) {
+    console.log("hihih", data);
+    let cartItem = this.state.cart;
+    let productID = data.id;
+    let TenThuoc = data.TenThuoc;
+    let Anh = data.Anh;
+    let DonGia = data.DonGia;
+    if (this.checkProduct(productID)) {
+      console.log("hi");
+      let index = cartItem.findIndex((x) => x.id == productID);
+      cartItem[index].DonGia = (
+        Number(cartItem[index].DonGia) + Number(DonGia)
+      ).toFixed(3);
+      this.setState({
+        cart: cartItem,
+      });
+    } else {
+      cartItem.push(data);
+    }
+    this.setState({
+      cart: cartItem,
+      cartBounce: true,
+    });
+    setTimeout(
+      function () {
+        this.setState({
+          cartBounce: false,
+          quantity: 1,
+        });
+        console.log(this.state.quantity);
+        console.log(this.state.cart);
+      }.bind(this),
+      1000
+    );
+    this.sumTotalItems(this.state.cart);
+    this.sumTotalAmount(this.state.cart);
+  }
+
+  sumTotalItems() {
+    let total = 0;
+    let cart = this.state.cart;
+    total = cart.length;
+    this.setState({
+      totalItems: total,
+    });
+  }
+  sumTotalAmount() {
+    let total = 0;
+    let cart = this.state.cart;
+    for (var i = 0; i < cart.length; i++) {
+      total += cart[i].price * parseInt(cart[i].quantity);
+    }
+    this.setState({
+      totalAmount: total,
+    });
+  }
 
   heandclick(data) {
     this.setState({
@@ -50,11 +116,13 @@ class Detail extends Component {
   };
 
   render() {
-    let { detailThuoc, isOpenModal, dataThuoc } = this.state;
-    // let cur = this.process.env.REACT_APP_IS_LOCALHOST == true ?
-    // "https://developers.facebook.com/apps/430806935750472/app-review/permissions/": window.location.href;
+    let { detailThuoc, isOpenModal, dataThuoc, cart } = this.state;
+    let cur =
+      process.env.REACT_APP_IS_LOCALHOST === 1
+        ? "https://9bc0-113-161-77-174.ap.ngrok.io/"
+        : window.location.href;
+    console.log("hello", cur);
 
-    // console.log(detailThuoc.Contents.ContentsHTML)
     return (
       <React.Fragment>
         <HomeHeader />
@@ -68,11 +136,15 @@ class Detail extends Component {
               <div className="content-title">
                 <span className="title-item">{detailThuoc.TenThuoc}</span>
               </div>
+
               <div className="container">
                 <div className="content-body">
                   <div className="price-loai">
-                    <span className="body-price">{detailThuoc.DonGia}đ /</span>
-                    <span className="body-loai">{detailThuoc.QuyCach}</span>
+                    <Likes />
+                  </div>
+                  <div className="price-loai">
+                    <span className="body-price">{detailThuoc.DonGia}đ </span>
+                    <span className="body-loai">/ {detailThuoc.QuyCach}</span>
                   </div>
                   <div className="body-loai">
                     <div className="loai-danmuc">
@@ -110,9 +182,7 @@ class Detail extends Component {
                   </div>
                 </div>
                 <div className="content-foodter">
-                  <Button
-                  // onClick={() => this.props.AddCart(detailThuoc)}
-                  >
+                  <Button onClick={() => this.AddCart(detailThuoc)}>
                     Thêm Hàng
                   </Button>
                   <Button onClick={() => this.heandclick(detailThuoc)}>
@@ -135,7 +205,7 @@ class Detail extends Component {
               )}
           </div>
           <div className="comment">
-            {/* <Comment dataHref={cur} width={"80%"} /> */}
+            <Comment dataHref={cur} width={"100%"} />
           </div>
         </div>
 
@@ -143,7 +213,9 @@ class Detail extends Component {
           isOpenModal={isOpenModal}
           closeModa={this.closeModa}
           dataThuoc={dataThuoc}
+          cart={cart}
         />
+        <Foorerfe />
       </React.Fragment>
     );
   }

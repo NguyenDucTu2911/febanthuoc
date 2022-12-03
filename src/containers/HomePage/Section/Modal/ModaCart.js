@@ -2,19 +2,14 @@ import React, { Component } from "react";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import "./ModaCart.scss";
-import { QuantityPicker } from "react-qty-picker";
 import { portCart } from "../../../../services/userService";
 import LoadingOverlay from "react-loading-overlay";
 import {
-  Button,
+
   Modal,
-  ModalBody,
-  ModalFooter,
-  ModalHeader,
   Form,
   FormGroup,
   Label,
-  Col,
   Input,
 } from "reactstrap";
 import _, { times } from "lodash";
@@ -35,7 +30,7 @@ class ModaCart extends Component {
       SoLuongXuat: 1,
       ThanhTien: "",
       ThanhToan: "",
-      isShowLoading: false,
+      isLoading: false,
     };
   }
 
@@ -110,9 +105,7 @@ class ModaCart extends Component {
   };
 
   heandclick = async () => {
-    this.setState({
-      isShowLoading: true,
-    });
+    this.setState({ isLoading: true });
     let res = await portCart({
       HoTen: this.state.HoTen,
       DiaChi: this.state.DiaChi,
@@ -127,7 +120,7 @@ class ModaCart extends Component {
       ThanhToan: this.state.ThanhToan,
     });
     this.setState({
-      isShowLoading: false,
+      isLoading: false,
     });
     if (res && res.errCode === 0) {
       toast.success("mua hàng thành công", {
@@ -159,11 +152,7 @@ class ModaCart extends Component {
   render() {
     let { isOpenModal, closeModa, dataThuoc } = this.props;
     return (
-      <LoadingOverlay
-        active={this.state.isShowLoading}
-        spinner
-        text="Loading..."
-      >
+      <LoadingOverlay active={this.state.isLoading} spinner text="Loading...">
         <Modal
           isOpen={isOpenModal}
           // toggle={this.toggle}

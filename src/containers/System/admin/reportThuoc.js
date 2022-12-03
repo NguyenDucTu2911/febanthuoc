@@ -1,10 +1,6 @@
 import React, { Component } from "react";
-import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
-import ReactTable from "react-table";
 import "./reportThuoc.scss";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 import {
   report,
   hendlegetThuoc,
@@ -13,6 +9,8 @@ import {
 import * as actions from "../../../store/actions";
 import moment from "moment/moment";
 import Select from "react-select";
+import CommonUtils from "../../../utils/CommonUtils";
+import ReactHTMLTableToExcel from "react-html-table-to-excel";
 
 class reportThuoc extends Component {
   constructor(props) {
@@ -26,7 +24,6 @@ class reportThuoc extends Component {
   }
 
   heandonchageDateOickr = (date) => {
-    console.log(date);
     this.setState({
       startDate: date,
     });
@@ -37,8 +34,6 @@ class reportThuoc extends Component {
     this.props.allthuoc();
   }
   componentDidUpdate(prevProps, prevState, snapshot) {
-    console.log(this.props.allThuoc.data);
-
     if (prevProps.allThuoc !== this.props.allThuoc) {
       let dataSelect = this.buidDataInput(this.props.allThuoc.data);
       this.setState({
@@ -68,22 +63,6 @@ class reportThuoc extends Component {
       });
     }
   };
-  handleChange = async (selectedOption) => {
-    this.setState({ selectedOption });
-    let res = await getDetailMec(selectedOption.value);
-    if (res && res.errCode === 0 && res.data && res.data.Contents) {
-      let content = res.data.Contents;
-      this.setState({
-        contentHtml: content.ContentsHTML,
-        contentMar: content.MAK,
-      });
-    } else {
-      this.setState({
-        contentMar: "",
-        contentHtml: "",
-      });
-    }
-  };
 
   render() {
     let products = this.state.products;
@@ -105,16 +84,25 @@ class reportThuoc extends Component {
                   onChange={this.handleChange}
                   options={this.state.listThuoc}
                 />
+                <ReactHTMLTableToExcel
+                  id="test-table-xls-button"
+                  className="download-table-xls-button"
+                  table="table-to-xls"
+                  filename="baocao"
+                  sheet="tablexls"
+                  buttonText="Export"
+                />
               </div>
             </div>
             <div className="body-table">
-              <table>
+              <table id="table-to-xls">
+                <tr>Bảng Thống Kê Thuốc</tr>
                 <tr>
                   <th>Tên Thuốc</th>
+                  <th>Số Đăng Ký</th>
+                  <th>Số Lượng</th>
                   <th>Đơn giá</th>
                   <th>DVT</th>
-                  <th>Số Lượng</th>
-                  <th>Số Đăng Ký</th>
                 </tr>
 
                 {products &&
@@ -123,10 +111,10 @@ class reportThuoc extends Component {
                       <>
                         <tr className="item">
                           <td>{item.TenThuoc}</td>
+                          <td>{item.SoDangKy}</td>
+                          <td>{item.SoLuong}</td>
                           <td>{item.DonGia}</td>
                           <td>{item.DVT}</td>
-                          <td>{item.SoLuong}</td>
-                          <td>{item.SoDangKy}</td>
                         </tr>
                       </>
                     );
