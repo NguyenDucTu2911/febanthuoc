@@ -18,6 +18,8 @@ import MdEditor from "react-markdown-editor-lite";
 import "react-markdown-editor-lite/lib/index.css";
 import Select from "react-select";
 import * as actions from "../../../store/actions";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const mdParser = new MarkdownIt(/* Markdown-it options */);
 class Medicine extends Component {
@@ -112,6 +114,16 @@ class Medicine extends Component {
         this.setState({
           isOpenmodaMedicine: false,
         });
+        toast.success("Xóa Thành Công", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       }
       emitter.emit("EVEN_CLEAR_MODAL_DATA");
     } catch (e) {
@@ -171,6 +183,16 @@ class Medicine extends Component {
       let res = await DeleteThuoc(thuoc.id);
       if (res && res.message.errCode === 0) {
         await this.getAllFormThuoc();
+        toast.success("🦄 Wow so easy!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       } else {
         alert(res.message.errMessage);
       }

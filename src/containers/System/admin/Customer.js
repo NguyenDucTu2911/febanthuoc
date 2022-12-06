@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import "./Customer.scss";
-import Managebody from "./managebody";
+import Cuttom_customer from "./cuttom_customer";
 
 class Customer extends Component {
   state = {};
@@ -16,7 +16,7 @@ class Customer extends Component {
           <h1 className="Customer-title_text">Quản Lý Khách Hàng</h1>
         </div>
         <div className="Employee-body">
-          <Managebody/>
+          <Cuttom_customer />
         </div>
       </div>
     );

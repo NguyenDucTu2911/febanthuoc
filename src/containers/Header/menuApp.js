@@ -30,6 +30,10 @@ export const adminMenu = [
         name: "menu.admin.manage-administer",
         link: "/system/medicine",
       },
+      {
+        name: "Nhap Hang",
+        link: "/system/sale",
+      },
     ],
   },
   {

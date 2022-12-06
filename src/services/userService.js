@@ -71,6 +71,10 @@ const GetAllthuocId = (data) => {
   return axios.get("/api/GetAllthuocId", data);
 };
 
+const hendleALLKhachHang = (id) => {
+  return axios.get(`/api/GetAllKhachHang?id=${id}`);
+};
+
 export {
   hendleLoginApi,
   hendlegetUser,
@@ -88,4 +92,5 @@ export {
   portCart,
   report,
   GetAllthuocId,
+  hendleALLKhachHang,
 };

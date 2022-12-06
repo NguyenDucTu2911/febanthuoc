@@ -3,7 +3,11 @@ import { connect } from "react-redux";
 import "./importgoods.scss";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { report, GetAllthuocId } from "../../../services/userService";
+import {
+  report,
+  GetAllthuocId,
+  hendlegetThuoc,
+} from "../../../services/userService";
 import * as actions from "../../../store/actions";
 import moment from "moment/moment";
 import ReactHTMLTableToExcel from "react-html-table-to-excel";
@@ -16,20 +20,45 @@ class importgoods extends Component {
       PRdate: "",
       data: "",
       startDate: moment(new Date()).startOf("day").valueOf(),
+      dataType: {},
     };
   }
 
   heandonchageDateOickr = (date) => {
-    console.log(date);
-    this.setState({
-      startDate: date,
-    });
+    // let dateID = moment(new Date(date)).format("YYYY/MM/DD");
+    // console.log(dateID);
+    this.setState(
+      {
+        startDate: date[0],
+      },
+      () => {
+        this.props.allthuoc();
+        let { startDate } = this.state;
+        let dateID = moment(new Date(startDate)).format("YYYY/MM/DD");
+        this.getData(dateID);
+      }
+    );
   };
 
   async componentDidMount() {
     await this.getAllFormThuoc();
     this.props.allthuoc();
+    // let { startDate } = this.state;
+    // let dateID = moment(new Date(startDate)).format("YYYY/MM/DD");
+    // console.log("sjasjjs", dateID);
+    // this.getData(dateID);
   }
+  // getData = async (dateID) => {
+  //   let res = await hendlegetThuoc({
+  //     NgayXuat: dateID,
+  //   });
+  //   if (res && res.errCode == 0) {
+  //     this.setState({
+  //       dataType: res.data,
+  //     });
+  //   }
+  // };
+
   componentDidUpdate(prevProps, prevState, snapshot) {}
 
   getAllFormThuoc = async () => {

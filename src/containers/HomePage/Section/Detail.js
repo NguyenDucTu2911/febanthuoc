@@ -119,7 +119,7 @@ class Detail extends Component {
     let { detailThuoc, isOpenModal, dataThuoc, cart } = this.state;
     let cur =
       process.env.REACT_APP_IS_LOCALHOST === 1
-        ? "https://9bc0-113-161-77-174.ap.ngrok.io/"
+        ? "https://96df-203-205-27-251.ap.ngrok.io/"
         : window.location.href;
     console.log("hello", cur);
 
